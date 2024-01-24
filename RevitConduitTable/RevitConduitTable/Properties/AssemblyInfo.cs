@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Revit_Conduit_Table")]
+[assembly: AssemblyTitle("RevitConduitTable")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Revit_Conduit_Table")]
+[assembly: AssemblyProduct("RevitConduitTable")]
 [assembly: AssemblyCopyright("Copyright ©  2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("bcccef61-aafd-49e7-aab4-2cf9c6b63a19")]
+[assembly: Guid("802ba946-48c2-44c1-84a2-3a03f41dfe52")]
 
 // Version information for an assembly consists of the following four values:
 //

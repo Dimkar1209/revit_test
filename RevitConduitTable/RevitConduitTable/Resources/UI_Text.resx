@@ -117,7 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ADDIN_PANEL_NAME" xml:space="preserve">
-    <value>HelloPanel</value>
+  <data name="BUTTON_CONDUIT_NAME" xml:space="preserve">
+    <value>ConduitButton</value>
+  </data>
+  <data name="PANEL_NAME" xml:space="preserve">
+    <value>ConduitPanel</value>
+  </data>
+  <data name="TAB_NAME" xml:space="preserve">
+    <value>ConduitTab</value>
   </data>
 </root>

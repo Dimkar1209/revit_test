@@ -4,15 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BCCCEF61-AAFD-49E7-AAB4-2CF9C6B63A19}</ProjectGuid>
+    <ProjectGuid>{802BA946-48C2-44C1-84A2-3A03F41DFE52}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Revit_Conduit_Table</RootNamespace>
-    <AssemblyName>Revit_Conduit_Table</AssemblyName>
+    <RootNamespace>RevitConduitTable</RootNamespace>
+    <AssemblyName>RevitConduitTable</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="RevitAPI">
       <HintPath>..\..\Third_Party\Revit2024\RevitAPI.dll</HintPath>
     </Reference>
@@ -48,17 +48,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HelloWordApp.cs" />
-    <Compile Include="HelloWordCmd.cs" />
+    <Compile Include="RevitConduitTableApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\UI_Text.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>UI_Text.resx</DependentUpon>
     </Compile>
+    <Compile Include="RevitUIBuilder\ConduitTableTab\ConduitPanel.cs" />
+    <Compile Include="RevitUIBuilder\ConduitTableTab\ConduitTab.cs" />
+    <Compile Include="RevitUIBuilder\ConduitTableTab\ConduitButton.cs" />
+    <Compile Include="RevitUIBuilder\ICustomButton.cs" />
+    <Compile Include="RevitUIBuilder\ICustomRibbonPanel.cs" />
+    <Compile Include="RevitUIBuilder\ICustomTab.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <None Include="Revit_Conduit_Table.addin" />
+    <None Include="RevitConduitTable.addin" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\UI_Text.resx">
@@ -70,7 +76,7 @@
   <PropertyGroup>
     <PostBuildEvent>md "$(ProjectDir)RevitConduitTableAddIn"
 xcopy "$(TargetPath)" "$(ProjectDir)RevitConduitTableAddIn\" /Y
-xcopy "$(ProjectDir)Revit_Conduit_Table.addin" "C:\ProgramData\Autodesk\Revit\Addins\2024\" /Y
+xcopy "$(ProjectDir)RevitConduitTable.addin" "C:\ProgramData\Autodesk\Revit\Addins\2024\" /Y
 md "C:\ProgramData\Autodesk\Revit\Addins\2024\RevitConduitTableAddIn"
 xcopy "$(ProjectDir)RevitConduitTableAddIn" "C:\ProgramData\Autodesk\Revit\Addins\2024\RevitConduitTableAddIn\" /E /Y</PostBuildEvent>
   </PropertyGroup>

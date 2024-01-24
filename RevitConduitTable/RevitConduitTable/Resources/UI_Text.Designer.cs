@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Revit_Conduit_Table.Resources {
+namespace RevitConduitTable.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Revit_Conduit_Table.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Revit_Conduit_Table.Resources.UI_Text", typeof(UI_Text).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RevitConduitTable.Resources.UI_Text", typeof(UI_Text).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,29 @@ namespace Revit_Conduit_Table.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to HelloPanel.
+        ///   Looks up a localized string similar to ConduitButton.
         /// </summary>
-        internal static string ADDIN_PANEL_NAME {
+        internal static string BUTTON_CONDUIT_NAME {
             get {
-                return ResourceManager.GetString("ADDIN_PANEL_NAME", resourceCulture);
+                return ResourceManager.GetString("BUTTON_CONDUIT_NAME", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CustomTab.
+        ///   Looks up a localized string similar to ConduitPanel.
         /// </summary>
-        internal static string ADDIN_TAB_NAME {
+        internal static string PANEL_NAME {
             get {
-                return ResourceManager.GetString("ADDIN_TAB_NAME", resourceCulture);
+                return ResourceManager.GetString("PANEL_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ConduitTab.
+        /// </summary>
+        internal static string TAB_NAME {
+            get {
+                return ResourceManager.GetString("TAB_NAME", resourceCulture);
             }
         }
     }

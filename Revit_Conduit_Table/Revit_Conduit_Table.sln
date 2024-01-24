@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Revit_Conduit_Table", "Revit_Conduit_Table\Revit_Conduit_Table.csproj", "{BCCCEF61-AAFD-49E7-AAB4-2CF9C6B63A19}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BCCCEF61-AAFD-49E7-AAB4-2CF9C6B63A19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCCCEF61-AAFD-49E7-AAB4-2CF9C6B63A19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCCCEF61-AAFD-49E7-AAB4-2CF9C6B63A19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCCCEF61-AAFD-49E7-AAB4-2CF9C6B63A19}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F714A8D8-236A-4CA8-A99A-62959F905857}
+	EndGlobalSection
+EndGlobal

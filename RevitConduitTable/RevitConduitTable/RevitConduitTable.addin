@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Assembly>.\RevitConduitTableAddIn\RevitConduitTable.dll</Assembly>
+    <AddInId>FC96D04C-7CBA-421B-ADBC-EA73ECE2FB13</AddInId>
+    <FullClassName>RevitConduitTable.RevitConduitTableApp</FullClassName>
+    <Name>RevitConduitTableApp</Name>
+    <VendorId>CompanyID</VendorId>
+    <VendorDescription>Company Description</VendorDescription>
+  </AddIn>
+</RevitAddIns>

@@ -1,10 +1,11 @@
 ﻿using Autodesk.Revit.UI;
-using System.Windows.Media;
 using RevitConduitTable.RevitUIBuilder;
 using System.Collections.Generic;
 using System;
 using System.Reflection;
 using System.Windows.Media.Imaging;
+using NLog;
+using RevitConduitTable.Resources;
 
 namespace RevitConduitTable
 {
@@ -12,8 +13,19 @@ namespace RevitConduitTable
     {
         public Result OnStartup(UIControlledApplication application)
         {
-            BuildUI(application);
-            return Result.Succeeded;
+            NlogSchemaInitialize.InitializeLogger();
+            logger.Info(Logs_Text.APP_STARTUP_INFO);
+
+            try
+            {
+                BuildUI(application);
+                return Result.Succeeded;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, Logs_Text.APP_STARTUP_ERROR);
+                return Result.Failed;
+            }
         }
 
         public Result OnShutdown(UIControlledApplication application)
@@ -76,5 +88,7 @@ namespace RevitConduitTable
 
             return customTabInstances;
         }
+
+        private static Logger logger = LogManager.GetCurrentClassLogger();
     }
 }

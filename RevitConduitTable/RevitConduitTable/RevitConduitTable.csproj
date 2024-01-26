@@ -31,6 +31,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=8.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.8.0.0\lib\netstandard2.0\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.5.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.31\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
       <Private>False</Private>
@@ -43,11 +52,14 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="Prism, Version=8.1.97.5141, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.8.1.97\lib\net47\Prism.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Prism.Unity.Wpf, Version=8.1.97.5141, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Unity.8.1.97\lib\net47\Prism.Unity.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="Prism.Wpf, Version=8.1.97.5141, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Wpf.8.1.97\lib\net47\Prism.Wpf.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="RevitAPI">
       <HintPath>..\..\Third_Party\Revit2024\RevitAPI.dll</HintPath>
@@ -58,9 +70,28 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=7.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.7.0.2\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -68,6 +99,12 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Unity.Abstractions, Version=5.11.7.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Abstractions.5.11.7\lib\net48\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.11.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Container.5.11.11\lib\net48\Unity.Container.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -91,13 +128,16 @@
     <Compile Include="RevitUIBuilder\ICustomButton.cs" />
     <Compile Include="RevitUIBuilder\ICustomRibbonPanel.cs" />
     <Compile Include="RevitUIBuilder\ICustomTab.cs" />
+    <Compile Include="WPF\Bootstrapper.cs" />
+    <Compile Include="WPF\Model\ConduitModel.cs" />
+    <Compile Include="WPF\ViewModel\ConduitTableVM.cs" />
+    <Compile Include="WPF\View\ConduitTableView.xaml.cs">
+      <DependentUpon>ConduitTableView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="WPF\Model\" />
-    <Folder Include="WPF\ViewModel\" />
-    <Folder Include="WPF\View\" />
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="RevitConduitTable.addin" />
   </ItemGroup>
@@ -111,13 +151,18 @@
       <LastGenOutput>UI_Text.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Page Include="WPF\View\ConduitTableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>md "$(ProjectDir)RevitConduitTableAddIn"
 xcopy "$(TargetDir)*.*" "$(ProjectDir)RevitConduitTableAddIn\" /Y
 xcopy "$(ProjectDir)RevitConduitTable.addin" "C:\ProgramData\Autodesk\Revit\Addins\2024\" /Y
 md "C:\ProgramData\Autodesk\Revit\Addins\2024\RevitConduitTableAddIn"
-md "C:\ProgramData\Autodesk\Revit\Addins\2024\RevitConduitTableAddIn\logs"
 xcopy "$(ProjectDir)RevitConduitTableAddIn\" "C:\ProgramData\Autodesk\Revit\Addins\2024\RevitConduitTableAddIn\" /E /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -1,11 +1,11 @@
 ﻿using Autodesk.Revit.UI;
-using RevitConduitTable.RevitUIBuilder;
-using System.Collections.Generic;
-using System;
-using System.Reflection;
-using System.Windows.Media.Imaging;
 using NLog;
 using RevitConduitTable.Resources;
+using RevitConduitTable.RevitUIBuilder;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Windows.Media.Imaging;
 
 namespace RevitConduitTable
 {

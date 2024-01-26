@@ -123,4 +123,10 @@
   <data name="APP_STARTUP_INFO" xml:space="preserve">
     <value>Starting RevitConduitTableApp</value>
   </data>
+  <data name="BUTTON_CONDUIT_ERROR" xml:space="preserve">
+    <value>Executing ConduitButton CMD Error</value>
+  </data>
+  <data name="BUTTON_CONDUIT_INFO" xml:space="preserve">
+    <value>Executing ConduitButton CMD</value>
+  </data>
 </root>

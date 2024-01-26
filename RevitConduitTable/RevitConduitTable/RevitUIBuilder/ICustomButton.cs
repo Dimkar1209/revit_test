@@ -2,7 +2,7 @@
 
 namespace RevitConduitTable.RevitUIBuilder
 {
-    public interface ICustomButton : IExternalCommand
+    internal interface ICustomButton : IExternalCommand
     {
         string Name { get; }
         string ClassName { get; }

@@ -77,5 +77,23 @@ namespace RevitConduitTable.Resources {
                 return ResourceManager.GetString("APP_STARTUP_INFO", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Executing ConduitButton CMD Error.
+        /// </summary>
+        internal static string BUTTON_CONDUIT_ERROR {
+            get {
+                return ResourceManager.GetString("BUTTON_CONDUIT_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Executing ConduitButton CMD.
+        /// </summary>
+        internal static string BUTTON_CONDUIT_INFO {
+            get {
+                return ResourceManager.GetString("BUTTON_CONDUIT_INFO", resourceCulture);
+            }
+        }
     }
 }

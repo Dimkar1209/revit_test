@@ -1,11 +1,14 @@
-﻿using NLog.Config;
+﻿using NLog;
+using NLog.Config;
 using NLog.Targets;
-using NLog;
+using RevitConduitTable.Constants;
 using System.IO;
 using System.Reflection;
-using RevitConduitTable.Constants;
 
-public static class NlogSchemaInitialize
+/// <summary>
+/// Initialize Nlog scheme which place .log file near dll executing assembly
+/// </summary>
+internal static class NlogSchemaInitialize
 {
     public static void InitializeLogger()
     {

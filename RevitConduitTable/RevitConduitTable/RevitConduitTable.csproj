@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=8.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.8.0.0\lib\netstandard2.0\Autofac.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -110,10 +107,16 @@
   <ItemGroup>
     <Compile Include="Constants\FileConstants.cs" />
     <Compile Include="Helpers\NlogSchemaInitialize.cs" />
+    <Compile Include="Helpers\RevitHelper.cs" />
     <Compile Include="Resources\Logs_Text.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Logs_Text.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\WPF_UI_EN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WPF_UI_EN.resx</DependentUpon>
     </Compile>
     <Compile Include="RevitConduitTableApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -130,7 +133,9 @@
     <Compile Include="RevitUIBuilder\ICustomTab.cs" />
     <Compile Include="WPF\Bootstrapper.cs" />
     <Compile Include="WPF\Model\ConduitModel.cs" />
-    <Compile Include="WPF\ViewModel\ConduitTableVM.cs" />
+    <Compile Include="WPF\Services\ILocalizationService.cs" />
+    <Compile Include="WPF\Services\LocalizationService.cs" />
+    <Compile Include="WPF\ViewModel\ConduitTableViewModel.cs" />
     <Compile Include="WPF\View\ConduitTableView.xaml.cs">
       <DependentUpon>ConduitTableView.xaml</DependentUpon>
     </Compile>
@@ -150,8 +155,20 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>UI_Text.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\WPF_UI_EN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>WPF_UI_EN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="WPF\Resources\LocalizedStrings_en.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPF\Resources\LocalizedStrings_ua.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="WPF\View\ConduitTableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

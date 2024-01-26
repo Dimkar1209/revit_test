@@ -14,7 +14,7 @@ internal static class NlogSchemaInitialize
     {
         string thisAssemblyPath = Assembly.GetExecutingAssembly().Location;
 
-        string logDirectory = Path.Combine(Path.GetDirectoryName(thisAssemblyPath), FileConstants.LoggerFolder);
+        string logDirectory = Path.Combine(Path.GetDirectoryName(thisAssemblyPath), FileConstants.LOGGER_FOLDER);
 
         if (!Directory.Exists(logDirectory))
         {

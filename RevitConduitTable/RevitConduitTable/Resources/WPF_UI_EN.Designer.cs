@@ -22,14 +22,14 @@ namespace RevitConduitTable.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Logs_Text {
+    internal class WPF_UI_EN {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Logs_Text() {
+        internal WPF_UI_EN() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace RevitConduitTable.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RevitConduitTable.Resources.Logs_Text", typeof(Logs_Text).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RevitConduitTable.Resources.WPF_UI_EN", typeof(WPF_UI_EN).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,60 +57,6 @@ namespace RevitConduitTable.Resources {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error during startup.
-        /// </summary>
-        internal static string APP_STARTUP_ERROR {
-            get {
-                return ResourceManager.GetString("APP_STARTUP_ERROR", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Starting RevitConduitTableApp.
-        /// </summary>
-        internal static string APP_STARTUP_INFO {
-            get {
-                return ResourceManager.GetString("APP_STARTUP_INFO", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Executing ConduitButton CMD error.
-        /// </summary>
-        internal static string BUTTON_CONDUIT_ERROR {
-            get {
-                return ResourceManager.GetString("BUTTON_CONDUIT_ERROR", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Executing ConduitButton CMD.
-        /// </summary>
-        internal static string BUTTON_CONDUIT_INFO {
-            get {
-                return ResourceManager.GetString("BUTTON_CONDUIT_INFO", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Localization scheme {0} loading error .
-        /// </summary>
-        internal static string LOCALIZATION_CHANGED_ERROR {
-            get {
-                return ResourceManager.GetString("LOCALIZATION_CHANGED_ERROR", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Localization scheme {0} loaded.
-        /// </summary>
-        internal static string LOCALIZATION_CHANGED_INFO {
-            get {
-                return ResourceManager.GetString("LOCALIZATION_CHANGED_INFO", resourceCulture);
             }
         }
     }

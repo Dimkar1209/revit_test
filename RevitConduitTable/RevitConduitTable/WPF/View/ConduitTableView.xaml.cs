@@ -1,5 +1,6 @@
-﻿using RevitConduitTable.WPF.ViewModel;
+﻿using RevitConduitTable.WPF.Services;
 
+using System.Windows;
 using System.Windows.Controls;
 
 namespace RevitConduitTable.WPF.View
@@ -9,11 +10,15 @@ namespace RevitConduitTable.WPF.View
     /// </summary>
     public partial class ConduitTableView : UserControl
     {
+        private readonly ILocalizationService _localizationService;
+
         public ConduitTableView()
         {
             InitializeComponent();
-            
-            DataContext = new ConduitTableVM();
+            ILocalizationService _localizationService = new LocalizationService();
+            var resources = new ResourceDictionary();
+            _localizationService.ChangeLanguage(resources);
+            this.Resources = resources;
         }
     }
 }

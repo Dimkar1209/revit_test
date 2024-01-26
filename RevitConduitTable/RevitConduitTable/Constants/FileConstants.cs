@@ -2,6 +2,7 @@
 {
     internal static class FileConstants
     {
-        internal static string LoggerFolder = "logs";
+        internal static string LOGGER_FOLDER = "logs";
+        internal static string WPF_LOCALIZATION_RESOURCE = "logs";
     }
 }

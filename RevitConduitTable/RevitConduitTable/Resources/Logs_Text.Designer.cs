@@ -97,20 +97,20 @@ namespace RevitConduitTable.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Localization scheme {0} loading error .
+        ///   Looks up a localized string similar to Resource key {0} not found for culture {1}.
         /// </summary>
-        internal static string LOCALIZATION_CHANGED_ERROR {
+        internal static string LOCALIZATION_KEY_WARN {
             get {
-                return ResourceManager.GetString("LOCALIZATION_CHANGED_ERROR", resourceCulture);
+                return ResourceManager.GetString("LOCALIZATION_KEY_WARN", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Localization scheme {0} loaded.
+        ///   Looks up a localized string similar to Failed to load resource for culture {0}.
         /// </summary>
-        internal static string LOCALIZATION_CHANGED_INFO {
+        internal static string LOCALIZATION_LOAD_ERROR {
             get {
-                return ResourceManager.GetString("LOCALIZATION_CHANGED_INFO", resourceCulture);
+                return ResourceManager.GetString("LOCALIZATION_LOAD_ERROR", resourceCulture);
             }
         }
     }

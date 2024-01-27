@@ -1,13 +1,14 @@
 ﻿using Prism.Ioc;
+using Prism.Regions;
 using Prism.Unity;
 
+using RevitConduitTable.Constants;
+using RevitConduitTable.Helpers;
+using RevitConduitTable.RevitUIBuilder;
 using RevitConduitTable.WPF.Services;
 using RevitConduitTable.WPF.View;
 using RevitConduitTable.WPF.ViewModel;
 
-using System.Globalization;
-
-using System.Threading;
 using System.Windows;
 
 namespace RevitConduitTable.WPF
@@ -16,18 +17,16 @@ namespace RevitConduitTable.WPF
     {
         protected override DependencyObject CreateShell()
         {
-            var parentWindow = new Window();
-            var view = Container.Resolve<ConduitTableView>();
-            view.DataContext = Container.Resolve<ConduitTableViewModel>();
-            parentWindow.Content = Container.Resolve<ConduitTableView>();
-
-            return parentWindow;
+            return new BootstrapperWindow();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterSingleton<BootstrapperWindow>();
             containerRegistry.RegisterSingleton<ILocalizationService, LocalizationService>();
+
             containerRegistry.RegisterForNavigation<ConduitTableView>();
+
             containerRegistry.Register<ConduitTableViewModel>();
         }
     }

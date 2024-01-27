@@ -3,19 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:RevitConduitTable.WPF.View"
+             xmlns:localize="clr-namespace:RevitConduitTable.WPF.Extensions"
              xmlns:prism="http://prismlibrary.com/"
+
              MinHeight="450"
              MinWidth="800"
              prism:ViewModelLocator.AutoWireViewModel="True" >
-
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/RevitConduitTable;component/WPF/Resources/LocalizedStrings_en.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
 
     <Grid Background="White" Margin="0,0,0,0">
 
@@ -43,9 +36,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="{DynamicResource AddButton}" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,0,5,0"/>
+            <Button Grid.Column="0" Content="{localize:Localize ADD_BUTTON_TABLE}" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,0,5,0"/>
             <Button Grid.Column="1" Content="Add" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,0,5,0"/>
-            <Button Grid.Column="2" Content="{DynamicResource DeleteButton}" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,0,5,0"/>
+            <Button Grid.Column="2" Content="{localize:Localize REMOVE_BUTTON_TABLE}" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,0,5,0"/>
         </Grid>
     </Grid>
 </UserControl>

@@ -106,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\FileConstants.cs" />
+    <Compile Include="Constants\RegionConstants.cs" />
     <Compile Include="Helpers\NlogSchemaInitialize.cs" />
     <Compile Include="Helpers\RevitHelper.cs" />
     <Compile Include="Resources\Logs_Text.Designer.cs">
@@ -113,18 +114,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Logs_Text.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\WPF_UI_EN.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WPF_UI_EN.resx</DependentUpon>
-    </Compile>
-    <Compile Include="RevitConduitTableApp.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\UI_Text.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>UI_Text.resx</DependentUpon>
     </Compile>
+    <Compile Include="RevitConduitTableApp.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RevitUIBuilder\ConduitTableTab\ConduitPanel.cs" />
     <Compile Include="RevitUIBuilder\ConduitTableTab\ConduitTab.cs" />
     <Compile Include="RevitUIBuilder\ConduitTableTab\ConduitButton.cs" />
@@ -132,6 +128,11 @@
     <Compile Include="RevitUIBuilder\ICustomRibbonPanel.cs" />
     <Compile Include="RevitUIBuilder\ICustomTab.cs" />
     <Compile Include="WPF\Bootstrapper.cs" />
+    <Compile Include="WPF\BootstrapperWindow.xaml.cs">
+      <DependentUpon>BootstrapperWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Extensions\LocalizeExtension.cs" />
+    <Compile Include="WPF\MainWindow\MainWindow.xaml.cs" />
     <Compile Include="WPF\Model\ConduitModel.cs" />
     <Compile Include="WPF\Services\ILocalizationService.cs" />
     <Compile Include="WPF\Services\LocalizationService.cs" />
@@ -151,23 +152,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Logs_Text.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\UI_Text.en-US.resx" />
     <EmbeddedResource Include="Resources\UI_Text.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UI_Text.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\WPF_UI_EN.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>WPF_UI_EN.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\UI_Text.uk-UA.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="WPF\Resources\LocalizedStrings_en.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="WPF\BootstrapperWindow.xaml">
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="WPF\Resources\LocalizedStrings_ua.xaml">
       <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="WPF\View\ConduitTableView.xaml">
       <SubType>Designer</SubType>
@@ -177,7 +172,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>md "$(ProjectDir)RevitConduitTableAddIn"
-xcopy "$(TargetDir)*.*" "$(ProjectDir)RevitConduitTableAddIn\" /Y
+xcopy "$(TargetDir)*.*" "$(ProjectDir)RevitConduitTableAddIn\"  /E /Y
 xcopy "$(ProjectDir)RevitConduitTable.addin" "C:\ProgramData\Autodesk\Revit\Addins\2024\" /Y
 md "C:\ProgramData\Autodesk\Revit\Addins\2024\RevitConduitTableAddIn"
 xcopy "$(ProjectDir)RevitConduitTableAddIn\" "C:\ProgramData\Autodesk\Revit\Addins\2024\RevitConduitTableAddIn\" /E /Y</PostBuildEvent>

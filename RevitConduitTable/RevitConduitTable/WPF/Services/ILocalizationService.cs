@@ -1,11 +1,13 @@
-﻿using System.Windows;
+﻿using System.Globalization;
+using System.Resources;
+using System.Windows;
 
 namespace RevitConduitTable.WPF.Services
 {
-    internal interface ILocalizationService
+    public interface ILocalizationService
     {
-        bool ChangeLanguage(ResourceDictionary resources);
+        string GetString(string key);
 
-        bool ChangeLanguage(string cultureName, ResourceDictionary resources);
+        void SetCulture(string cultureName);
     }
 }

@@ -5,7 +5,7 @@ namespace RevitConduitTable.RevitUIBuilder.ConduitTableTab
 {
     internal class ConduitPanel : ICustomRibbonPanel
     {
-        public string PanelName => Resources.UI_Text.PANEL_NAME;
+        public string PanelName => "PANEL_NAME";
 
         public IReadOnlyCollection<ICustomButton> Buttons => _buttons;
 

@@ -129,10 +129,10 @@
   <data name="BUTTON_CONDUIT_INFO" xml:space="preserve">
     <value>Executing ConduitButton CMD</value>
   </data>
-  <data name="LOCALIZATION_CHANGED_ERROR" xml:space="preserve">
-    <value>Localization scheme {0} loading error </value>
+  <data name="LOCALIZATION_KEY_WARN" xml:space="preserve">
+    <value>Resource key {0} not found for culture {1}</value>
   </data>
-  <data name="LOCALIZATION_CHANGED_INFO" xml:space="preserve">
-    <value>Localization scheme {0} loaded</value>
+  <data name="LOCALIZATION_LOAD_ERROR" xml:space="preserve">
+    <value>Failed to load resource for culture {0}</value>
   </data>
 </root>

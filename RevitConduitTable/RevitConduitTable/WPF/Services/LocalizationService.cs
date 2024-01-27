@@ -1,56 +1,56 @@
 ﻿using NLog;
 
+using RevitConduitTable.Constants;
 using RevitConduitTable.Resources;
 
-using System;
 using System.Globalization;
-using System.Windows;
+using System.Reflection;
+using System.Resources;
 
 namespace RevitConduitTable.WPF.Services
 {
-    /// <summary>
-    /// Localization service which dynamicly loads localization xaml schems.
-    /// </summary>
-    internal class LocalizationService : ILocalizationService
+    public class LocalizationService : ILocalizationService
     {
-        /// <summary>
-        /// Set localization by CurrentCulture prefrenses.
-        /// </summary>
-        public bool ChangeLanguage(ResourceDictionary resources)
+        private ResourceManager _resourceManager;
+        private CultureInfo _currentCulture;
+        private readonly string _resourcePath;
+
+        public LocalizationService()
         {
-           return ChangeLanguage(GetLanguage(), resources);
+            _resourcePath = FileConstants.WPF_LOCALIZATION_RESOURCE;
+            _resourceManager = new ResourceManager(_resourcePath, typeof(UI_Text).Assembly);
+            _currentCulture = CultureInfo.CurrentCulture;
         }
 
-        /// <summary>
-        /// Pass two letter ISO Language Name code to change localization.
-        /// </summary>
-        public bool ChangeLanguage(string cultureName, ResourceDictionary resources)
+        public string GetString(string key)
         {
+            string resourceValue = null;
+
             try
             {
-                logger.Error(Logs_Text.LOCALIZATION_CHANGED_INFO, cultureName);
-
-                var dictionaryPath = $"pack://application:,,,/RevitConduitTable;component/WPF/Resources/LocalizedStrings_ua.xaml";
-                var uri = new Uri(dictionaryPath, UriKind.Absolute);
-                var resourceDict = new ResourceDictionary { Source = uri };
-
-                resources.MergedDictionaries.Clear();
-                resources.MergedDictionaries.Add(resourceDict);
+                resourceValue = _resourceManager.GetString(key, _currentCulture);
             }
-            catch (Exception)
+            catch (MissingManifestResourceException ex)
             {
-                logger.Error(Logs_Text.LOCALIZATION_CHANGED_ERROR, cultureName);
-                ChangeLanguage("en", resources);
-                return false;
+                logger.Error(ex, Logs_Text.LOCALIZATION_LOAD_ERROR, _currentCulture.Name);
+                _resourceManager = new ResourceManager(_resourcePath, Assembly.GetExecutingAssembly());
+                resourceValue = _resourceManager.GetString(key, CultureInfo.InvariantCulture);
             }
 
-            return true;
+            if (resourceValue == null)
+            {
+                logger.Warn(Logs_Text.LOCALIZATION_KEY_WARN, key, _currentCulture.Name);
+                resourceValue = key;
+            }
+
+            return resourceValue;
         }
 
-        private string GetLanguage()
+        public void SetCulture(string cultureName)
         {
-            CultureInfo currentCulture = CultureInfo.CurrentCulture;
-            return currentCulture.TwoLetterISOLanguageName;
+            _currentCulture = new CultureInfo(cultureName);
+            CultureInfo.CurrentCulture = _currentCulture;
+            CultureInfo.CurrentUICulture = _currentCulture;
         }
 
         private static Logger logger = LogManager.GetCurrentClassLogger();

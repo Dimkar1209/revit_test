@@ -1,10 +1,16 @@
 ﻿using Autodesk.Revit.UI;
+
 using NLog;
+
+using RevitConduitTable.Helpers;
 using RevitConduitTable.Resources;
 using RevitConduitTable.RevitUIBuilder;
+using RevitConduitTable.WPF.Services;
+
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace RevitConduitTable
@@ -46,17 +52,19 @@ namespace RevitConduitTable
 
         private void BuildTab(UIControlledApplication application, string thisAssemblyPath, ICustomTab tab)
         {
-            application.CreateRibbonTab(tab.TabName);
+            ILocalizationService localizationService = new LocalizationService();
+            application.CreateRibbonTab(localizationService.GetString(tab.TabName));
 
             foreach (var panel in tab.Panels)
             {
-                RibbonPanel ribbonPanel = application.CreateRibbonPanel(tab.TabName, panel.PanelName);
+                RibbonPanel ribbonPanel = application.CreateRibbonPanel(localizationService.GetString(tab.TabName),
+                    localizationService.GetString(panel.PanelName));
 
                 foreach (var button in panel.Buttons)
                 {
                     var buttonData = new PushButtonData(
                         button.Name,
-                        button.ButtonText,
+                        localizationService.GetString(button.ButtonText),
                         thisAssemblyPath,
                         button.ClassName);
 
@@ -73,7 +81,7 @@ namespace RevitConduitTable
         private IEnumerable<ICustomTab> GetCustomTabs()
         {
             var customTabInstances = new List<ICustomTab>();
-            var assembly = Assembly.GetExecutingAssembly(); 
+            var assembly = Assembly.GetExecutingAssembly();
 
             foreach (var type in assembly.GetTypes())
             {

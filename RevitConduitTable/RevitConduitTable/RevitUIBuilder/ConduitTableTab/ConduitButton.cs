@@ -4,7 +4,9 @@ using Autodesk.Revit.UI;
 using NLog;
 
 using Prism.Ioc;
+using Prism.Regions;
 
+using RevitConduitTable.Constants;
 using RevitConduitTable.Resources;
 using RevitConduitTable.WPF;
 using RevitConduitTable.WPF.View;
@@ -21,7 +23,7 @@ namespace RevitConduitTable.RevitUIBuilder
 
         public string ClassName => this.GetType().FullName;
 
-        public string ButtonText => UI_Text.BUTTON_CONDUIT_NAME;
+        public string ButtonText => "BUTTON_CONDUIT_NAME";
 
         public string ImagePath => string.Empty;
 
@@ -36,6 +38,9 @@ namespace RevitConduitTable.RevitUIBuilder
                 logger.Info(Logs_Text.BUTTON_CONDUIT_INFO);
                 var bootstrapper = new Bootstrapper();
                 bootstrapper.Run();
+
+                var _regionManager = bootstrapper.Container.Resolve<IRegionManager>();
+                _regionManager.RequestNavigate(RegionConstants.MAIN_REGION_NAME, typeof(ConduitTableView).Name);
                 return Result.Succeeded;
             }
             catch (Exception ex)

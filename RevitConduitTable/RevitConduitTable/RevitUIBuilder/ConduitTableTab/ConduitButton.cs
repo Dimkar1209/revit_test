@@ -12,7 +12,6 @@ using RevitConduitTable.WPF;
 using RevitConduitTable.WPF.View;
 
 using System;
-using System.Windows;
 
 namespace RevitConduitTable.RevitUIBuilder
 {

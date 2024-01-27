@@ -5,19 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:localize="clr-namespace:RevitConduitTable.WPF.Extensions"
              xmlns:prism="http://prismlibrary.com/"
-
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              MinHeight="450"
-             MinWidth="800"
-             prism:ViewModelLocator.AutoWireViewModel="True" >
+             MinWidth="800">
 
+    
     <Grid Background="White" Margin="0,0,0,0">
 
         <Grid Margin="10,100,10,10">
-            <DataGrid ItemsSource="{Binding Conduits}" AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding ID}" />
-                    <!-- Other columns -->
-                </DataGrid.Columns>
+            <DataGrid x:Name="ConduitTable" ItemsSource="{Binding Conduits}" AutoGenerateColumns="False">
+
             </DataGrid>
         </Grid>
 
@@ -36,9 +34,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="{localize:Localize ADD_BUTTON_TABLE}" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,0,5,0"/>
-            <Button Grid.Column="1" Content="Add" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,0,5,0"/>
-            <Button Grid.Column="2" Content="{localize:Localize REMOVE_BUTTON_TABLE}" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,0,5,0"/>
+            <Button Grid.Column="0" Content="{localize:Localize ADD_BUTTON_TABLE}" Command="{Binding AddCommand}" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,0,5,0"/>
+            <Button Grid.Column="1" Content="{localize:Localize EDIT_BUTTON_TABLE}" Command="{Binding EditCommand}" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,0,5,0"/>
+            <Button Grid.Column="2" Content="{localize:Localize REMOVE_BUTTON_TABLE}" Command="{Binding RemoveCommand}" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,0,5,0"/>
         </Grid>
     </Grid>
 </UserControl>

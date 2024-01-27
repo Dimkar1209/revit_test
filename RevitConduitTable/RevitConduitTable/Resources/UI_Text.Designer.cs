@@ -61,7 +61,7 @@ namespace RevitConduitTable.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ADD_BUTTON_TABLE.
+        ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string ADD_BUTTON_TABLE {
             get {
@@ -70,7 +70,7 @@ namespace RevitConduitTable.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to BUTTON_CONDUIT_NAME.
+        ///   Looks up a localized string similar to Button Conduit.
         /// </summary>
         public static string BUTTON_CONDUIT_NAME {
             get {
@@ -79,7 +79,16 @@ namespace RevitConduitTable.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PANEL_NAME.
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string EDIT_BUTTON_TABLE {
+            get {
+                return ResourceManager.GetString("EDIT_BUTTON_TABLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Panel Conduit.
         /// </summary>
         public static string PANEL_NAME {
             get {
@@ -88,7 +97,7 @@ namespace RevitConduitTable.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to REMOVE_BUTTON_TABLE.
+        ///   Looks up a localized string similar to Remove.
         /// </summary>
         public static string REMOVE_BUTTON_TABLE {
             get {
@@ -97,7 +106,7 @@ namespace RevitConduitTable.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TAB_NAME.
+        ///   Looks up a localized string similar to Tab Name.
         /// </summary>
         public static string TAB_NAME {
             get {

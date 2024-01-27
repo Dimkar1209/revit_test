@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Prism.Ioc;
+
+using RevitConduitTable.WPF.ViewModel;
+
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace RevitConduitTable.WPF.View
 {
@@ -20,9 +13,37 @@ namespace RevitConduitTable.WPF.View
     /// </summary>
     public partial class ConduitTableView : UserControl
     {
-        public ConduitTableView()
+        public ConduitTableView(IContainerProvider containerProvider)
         {
             InitializeComponent();
+            DataContext = containerProvider.Resolve<ConduitTableViewModel>();
+            this.Loaded += ConduitTableView_Loaded;
+        }
+
+        private void UpdateDataGridColumns(DataGrid dataGrid)
+        {
+            if (DataContext is ConduitTableViewModel viewModel)
+            {
+                dataGrid.Columns.Clear();
+
+                foreach (var header in viewModel.ColumnHeaders)
+                {
+                    var binding = new Binding($"[{header}]");
+                    dataGrid.Columns.Add(new DataGridTextColumn { Header = header, Binding = binding });
+                }
+
+                viewModel.Conduits.CollectionChanged += Conduits_CollectionChanged;
+            }
+        }
+
+        private void Conduits_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            UpdateDataGridColumns(this.ConduitTable);
+        }
+
+        private void ConduitTableView_Loaded(object sender, RoutedEventArgs e)
+        {
+            UpdateDataGridColumns(this.ConduitTable);
         }
     }
 }

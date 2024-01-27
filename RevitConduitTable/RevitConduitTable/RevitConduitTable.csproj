@@ -39,7 +39,8 @@
     </Reference>
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.31\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.5.2.8\lib\net46\NLog.dll</HintPath>
@@ -127,10 +128,12 @@
     <Compile Include="RevitUIBuilder\ICustomButton.cs" />
     <Compile Include="RevitUIBuilder\ICustomRibbonPanel.cs" />
     <Compile Include="RevitUIBuilder\ICustomTab.cs" />
+    <Compile Include="RevitUIBuilder\UIBuilder.cs" />
     <Compile Include="WPF\Bootstrapper.cs" />
     <Compile Include="WPF\BootstrapperWindow.xaml.cs">
       <DependentUpon>BootstrapperWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPF\Extensions\DictionaryValueConverter.cs" />
     <Compile Include="WPF\Extensions\LocalizeExtension.cs" />
     <Compile Include="WPF\MainWindow\MainWindow.xaml.cs" />
     <Compile Include="WPF\Model\ConduitModel.cs" />

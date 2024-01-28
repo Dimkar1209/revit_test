@@ -1,17 +1,16 @@
 ﻿using Prism.Commands;
+using Prism.Events;
 using Prism.Mvvm;
+using Prism.Services.Dialogs;
 
+using RevitConduitTable.Constants;
+using RevitConduitTable.WPF.Events;
 using RevitConduitTable.WPF.Model;
+using RevitConduitTable.WPF.View;
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Prism.Interactivity;
-using Prism.Services.Dialogs;
-using RevitConduitTable.WPF.View;
-using RevitConduitTable.Constants;
 using System.Linq;
-using Prism.Events;
-using RevitConduitTable.WPF.Events;
 
 namespace RevitConduitTable.WPF.ViewModel
 {
@@ -47,17 +46,17 @@ namespace RevitConduitTable.WPF.ViewModel
             {
                 new ConduitItem()
                 {
-                    Properties = new Dictionary<string, ConduitProperty>()
-                    {
-                        { "ID", new ConduitProperty() { ParameterName = "ID", ParameterValue = 1, IsReadonly=true }},
-                        { "C1", new ConduitProperty() { ParameterName = "C1", ParameterValue = 2, IsReadonly=false }}
-                    }
+                    Properties = defautproperties
                 }
             };
 
             AddCommand = new DelegateCommand(ExecuteAddCommand);
             RemoveCommand = new DelegateCommand(ExecuteRemoveCommand, CanExecuteRemoveCommand)
-            .ObservesProperty(() => SelectedConduit);
+                .ObservesProperty(() => SelectedConduit);
+
+            CopyCommand = new DelegateCommand(ExecuteCopyCommand, CanExecuteCopyCommand)
+                .ObservesProperty(() => SelectedConduit);
+            PasteCommand = new DelegateCommand(ExecutePasteCommand, CanExecutePasteCommand);
 
             AddColumnCommand = new DelegateCommand(ExecuteAddColumnCommand);
 
@@ -82,7 +81,9 @@ namespace RevitConduitTable.WPF.ViewModel
                     newConduit.Properties[keyValuePair.Key] = new ConduitProperty()
                     {
                         ParameterName = keyValuePair.Value.ParameterName,
-                        ParameterValue = keyValuePair.Key == "ID" ? (int)lastConduit.Properties["ID"].ParameterValue + 1 : keyValuePair.Value.ParameterValue
+                        ParameterValue = keyValuePair.Key == ParametersConstants.DATAGRID_ID ? 
+                        (int)lastConduit.Properties[ParametersConstants.DATAGRID_ID].ParameterValue + 1 
+                        : keyValuePair.Value.ParameterValue
                     };
                 }
 
@@ -127,22 +128,79 @@ namespace RevitConduitTable.WPF.ViewModel
 
             foreach (var item in _conduits)
             {
-                item.Properties.Add(columnAdd, new ConduitProperty() { ParameterName = columnAdd, ParameterValue = 1, IsReadonly = true });
+                item.Properties.Add(columnAdd, new ConduitProperty()
+                { ParameterName = columnAdd, ParameterValue = 1, IsReadonly = false });
             }
 
             RaisePropertyChanged(nameof(Conduits));
 
             _eventAggregator.GetEvent<UpdateTableEvent>().Publish(null);
+            _copiedConduit = null;
+        }
+
+        private void ExecuteCopyCommand()
+        {
+            _copiedConduit = SelectedConduit;
+            PasteCommand.RaiseCanExecuteChanged();
+        }
+
+        private bool CanExecuteCopyCommand()
+        {
+            return SelectedConduit != null;
+        }
+
+        private void ExecutePasteCommand()
+        {
+            if (_copiedConduit != null && SelectedConduit != null)
+            {
+                var newProperties = new Dictionary<string, ConduitProperty>();
+
+                foreach (var kvp in _copiedConduit.Properties)
+                {
+                    if (kvp.Key == ParametersConstants.DATAGRID_ID)
+                    {
+                        // Preserve the original ID of the selected conduit
+                        newProperties[kvp.Key] = new ConduitProperty()
+                        {
+                            ParameterName = ParametersConstants.DATAGRID_ID,
+                            ParameterValue = SelectedConduit.Properties[ParametersConstants.DATAGRID_ID].ParameterValue,
+                            IsReadonly = true
+                        };
+                    }
+                    else
+                    {
+                        // Copy other properties
+                        newProperties[kvp.Key] = new ConduitProperty()
+                        {
+                            ParameterName = kvp.Value.ParameterName,
+                            ParameterValue = kvp.Value.ParameterValue,
+                            IsReadonly = kvp.Value.IsReadonly
+                        };
+                    }
+                }
+
+                SelectedConduit.Properties = newProperties;
+
+                // Notify UI to refresh if necessary
+                RaisePropertyChanged(nameof(SelectedConduit));
+            }
+        }
+
+        private bool CanExecutePasteCommand()
+        {
+            return _copiedConduit != null;
         }
 
         ObservableCollection<ConduitItem> _conduits;
         private ConduitItem _selectedConduit;
+        private ConduitItem _copiedConduit;
+
         private IDialogService _dialogService;
 
         private Dictionary<string, ConduitProperty> defautproperties = new Dictionary<string, ConduitProperty>()
-                    {
-                        { "ID", new ConduitProperty() { ParameterName = "ID", ParameterValue = 1 }},
-                        { "C1", new ConduitProperty() { ParameterName = "C1", ParameterValue = 2 }}
-                    };
+        {
+            { ParametersConstants.DATAGRID_ID, new ConduitProperty() { ParameterName = ParametersConstants.DATAGRID_ID, ParameterValue = 1 }},
+            { "C1", new ConduitProperty() { ParameterName = "C1", ParameterValue = 2 }}
+        };
     }
 }

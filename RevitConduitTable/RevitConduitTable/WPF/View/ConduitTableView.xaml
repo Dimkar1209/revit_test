@@ -13,7 +13,14 @@
     <Grid Background="White" Margin="0,0,0,0">
 
         <Grid Margin="10,100,10,10">
-            <DataGrid x:Name="ConduitTable" ItemsSource="{Binding Conduits}" SelectedItem="{Binding SelectedConduit, Mode=TwoWay}" AutoGenerateColumns="False" CanUserAddRows="False"/>
+            <DataGrid x:Name="ConduitTable" ItemsSource="{Binding Conduits}" SelectedItem="{Binding SelectedConduit, Mode=TwoWay}" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Copy" Command="{Binding CopyCommand}" />
+                        <MenuItem Header="Paste" Command="{Binding PasteCommand}" />
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+            </DataGrid>
         </Grid>
 
         <!-- Grid Upper Right -->

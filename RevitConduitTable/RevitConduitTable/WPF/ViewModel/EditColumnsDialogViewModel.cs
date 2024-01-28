@@ -28,22 +28,6 @@ namespace RevitConduitTable.WPF.ViewModel
             set { SetProperty(ref _editedText, value); }
         }
 
-        public string SelectedType
-        {
-            get { return _isStringSelected ? "String" : "Int"; }
-            set
-            {
-                if (value == "String")
-                {
-                    SetProperty(ref _isStringSelected, true);
-                }
-                else if (value == "Int")
-                {
-                    SetProperty(ref _isStringSelected, false);
-                }
-            }
-        }
-
         public EditColumnsDialogViewModel(IDialogService dialogService)
         {
             _dialogService = dialogService;

@@ -129,6 +129,12 @@
   <data name="EDIT_COLUMNS_BUTTON_TABLE" xml:space="preserve">
     <value>Edit Column</value>
   </data>
+  <data name="EDIT_COLUMN_DIALOG_TITLE" xml:space="preserve">
+    <value>Edit Conduit</value>
+  </data>
+  <data name="MESSAGE_DIALOG_TITLE" xml:space="preserve">
+    <value>Message</value>
+  </data>
   <data name="PANEL_NAME" xml:space="preserve">
     <value>Panel Conduit</value>
   </data>

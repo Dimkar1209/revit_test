@@ -1,5 +1,7 @@
-﻿using Prism.Ioc;
+﻿using Prism.Events;
+using Prism.Ioc;
 
+using RevitConduitTable.WPF.Events;
 using RevitConduitTable.WPF.ViewModel;
 
 using System.Collections.Generic;
@@ -15,17 +17,28 @@ namespace RevitConduitTable.WPF.View
     /// </summary>
     public partial class ConduitTableView : UserControl
     {
-        public ConduitTableView(IContainerProvider containerProvider)
+        public ConduitTableView(IContainerProvider containerProvider, IEventAggregator eventAggregator)
         {
             InitializeComponent();
             DataContext = containerProvider.Resolve<ConduitTableViewModel>();
             this.Loaded += ConduitTableView_Loaded;
+            eventAggregator.GetEvent<UpdateTableEvent>().Subscribe(UpdateDataGridColumns);
         }
 
-        private void UpdateDataGridColumns(DataGrid dataGrid)
+        /// <summary>
+        /// Update DataGrid
+        /// </summary>
+        /// <param name="obj">Event object</param>
+        private void UpdateDataGridColumns(object obj)
+        {
+            UpdateDynamicTable();
+        }
+
+        private void UpdateDynamicTable()
         {
             if (DataContext is ConduitTableViewModel viewModel)
             {
+                DataGrid dataGrid = this.ConduitTable;
                 dataGrid.Columns.Clear();
 
                 if (viewModel.Conduits != null)
@@ -52,7 +65,7 @@ namespace RevitConduitTable.WPF.View
                             Binding = binding,
                             Width = new DataGridLength(1, DataGridLengthUnitType.Star),
                             MinWidth = 20,
-                            IsReadOnly= isReadOnly
+                            IsReadOnly = isReadOnly
                         });
                     }
                 }
@@ -64,13 +77,13 @@ namespace RevitConduitTable.WPF.View
             if (DataContext is ConduitTableViewModel viewModel)
             {
                 viewModel.Conduits.CollectionChanged += Conduits_CollectionChanged;
-                UpdateDataGridColumns(this.ConduitTable);
+                UpdateDynamicTable();
             }
         }
 
         private void Conduits_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-           
+            UpdateDynamicTable();
         }
     }
 }

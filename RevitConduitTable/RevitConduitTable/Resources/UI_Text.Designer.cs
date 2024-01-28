@@ -88,11 +88,38 @@ namespace RevitConduitTable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Conduit.
+        /// </summary>
+        public static string EDIT_COLUMN_DIALOG_TITLE {
+            get {
+                return ResourceManager.GetString("EDIT_COLUMN_DIALOG_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Column already exists..
+        /// </summary>
+        public static string EDIT_COLUMN_ERROR {
+            get {
+                return ResourceManager.GetString("EDIT_COLUMN_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Columns.
         /// </summary>
         public static string EDIT_COLUMNS_BUTTON_TABLE {
             get {
                 return ResourceManager.GetString("EDIT_COLUMNS_BUTTON_TABLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message.
+        /// </summary>
+        public static string MESSAGE_DIALOG_TITLE {
+            get {
+                return ResourceManager.GetString("MESSAGE_DIALOG_TITLE", resourceCulture);
             }
         }
         

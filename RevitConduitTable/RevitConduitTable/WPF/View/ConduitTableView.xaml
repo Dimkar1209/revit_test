@@ -10,7 +10,6 @@
              MinHeight="450"
              MinWidth="800">
 
-    
     <Grid Background="White" Margin="0,0,0,0">
 
         <Grid Margin="10,100,10,10">
@@ -33,7 +32,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Content="{localize:Localize ADD_BUTTON_TABLE}" Command="{Binding AddCommand}" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,0,5,0"/>
-            <Button Grid.Column="1" Content="{localize:Localize EDIT_COLUMNS_BUTTON_TABLE}" Command="{Binding EditCommand}" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,0,5,0"/>
+            <Button Grid.Column="1" Content="{localize:Localize EDIT_COLUMNS_BUTTON_TABLE}" Command="{Binding AddColumnCommand}" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,0,5,0"/>
             <Button Grid.Column="2" Content="{localize:Localize REMOVE_BUTTON_TABLE}" Command="{Binding RemoveCommand}" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,0,5,0"/>
         </Grid>
     </Grid>

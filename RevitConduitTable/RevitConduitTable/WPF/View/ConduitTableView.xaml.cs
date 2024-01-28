@@ -34,6 +34,14 @@ namespace RevitConduitTable.WPF.View
             UpdateDynamicTable();
         }
 
+        private void ConduitTableView_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is ConduitTableViewModel viewModel)
+            {
+                UpdateDynamicTable();
+            }
+        }
+
         private void UpdateDynamicTable()
         {
             if (DataContext is ConduitTableViewModel viewModel)
@@ -52,6 +60,7 @@ namespace RevitConduitTable.WPF.View
                     foreach (string paramName in uniqueParameterNames)
                     {
                         bool isReadOnly = viewModel.Conduits.FirstOrDefault()?.Properties[paramName].IsReadonly ?? false;
+                        bool isVisible = viewModel.Conduits.FirstOrDefault()?.Properties[paramName].IsVisible ?? false;
 
                         var binding = new System.Windows.Data.Binding($"Properties[{paramName}].ParameterValue")
                         {
@@ -65,25 +74,14 @@ namespace RevitConduitTable.WPF.View
                             Binding = binding,
                             Width = new DataGridLength(1, DataGridLengthUnitType.Star),
                             MinWidth = 20,
-                            IsReadOnly = isReadOnly
+                            IsReadOnly = isReadOnly,
+                            Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed,
+
                         });
                     }
                 }
             }
         }
 
-        private void ConduitTableView_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (DataContext is ConduitTableViewModel viewModel)
-            {
-                viewModel.Conduits.CollectionChanged += Conduits_CollectionChanged;
-                UpdateDynamicTable();
-            }
-        }
-
-        private void Conduits_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            UpdateDynamicTable();
-        }
     }
 }

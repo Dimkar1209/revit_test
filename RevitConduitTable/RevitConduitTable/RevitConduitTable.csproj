@@ -142,8 +142,6 @@
     <Compile Include="WPF\MainWindow\MainWindow.xaml.cs" />
     <Compile Include="WPF\Model\ConduitItem.cs" />
     <Compile Include="WPF\Model\ConduitProperty.cs" />
-    <Compile Include="WPF\Services\DialogService.cs.cs" />
-    <Compile Include="WPF\Services\IDialogService.cs" />
     <Compile Include="WPF\Services\ILocalizationService.cs" />
     <Compile Include="WPF\Services\LocalizationService.cs" />
     <Compile Include="WPF\ViewModel\ConduitTableViewModel.cs" />

@@ -28,13 +28,13 @@ namespace RevitConduitTable.WPF
             containerRegistry.RegisterSingleton<BootstrapperWindow>();
             containerRegistry.RegisterSingleton<ILocalizationService, LocalizationService>();
 
+            containerRegistry.Register<ConduitTableViewModel>();
+            containerRegistry.Register<UpdateTableEvent>();
+
             containerRegistry.RegisterForNavigation<ConduitTableView>();
 
             containerRegistry.RegisterDialog<EditColumsDialog, EditColumnsDialogViewModel>();
             containerRegistry.RegisterDialog<MessageBoxDialog, MessageBoxDialogViewModel>();
-
-            containerRegistry.Register<ConduitTableViewModel>();
-            containerRegistry.Register<UpdateTableEvent>();
         }
     }
 }

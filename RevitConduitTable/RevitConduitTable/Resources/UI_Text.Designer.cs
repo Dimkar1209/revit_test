@@ -115,6 +115,15 @@ namespace RevitConduitTable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hide Calculated Fields.
+        /// </summary>
+        public static string HIDE_FIELDS_BUTTON {
+            get {
+                return ResourceManager.GetString("HIDE_FIELDS_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Message.
         /// </summary>
         public static string MESSAGE_DIALOG_TITLE {
@@ -147,6 +156,15 @@ namespace RevitConduitTable.Resources {
         public static string TAB_NAME {
             get {
                 return ResourceManager.GetString("TAB_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Calculated Fields.
+        /// </summary>
+        public static string UNHIDE_FIELDS_BUTTON {
+            get {
+                return ResourceManager.GetString("UNHIDE_FIELDS_BUTTON", resourceCulture);
             }
         }
     }

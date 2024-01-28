@@ -13,14 +13,12 @@ namespace RevitConduitTable.WPF.ViewModel
 {
     internal class EditColumnsDialogViewModel : BindableBase, IDialogAware
     {
-        public string Title => UI_Text.EDIT_COLUMN_DIALOG_TITLE;
-
         public DelegateCommand SaveCommand { get; }
         public DelegateCommand CancelCommand { get; }
 
+        public event Action<IDialogResult> RequestClose;
 
-        private string _editedText;
-        private IEnumerable<string> _editableString;
+        public string Title => UI_Text.EDIT_COLUMN_DIALOG_TITLE;
 
         public string EditedText
         {
@@ -33,6 +31,24 @@ namespace RevitConduitTable.WPF.ViewModel
             _dialogService = dialogService;
             SaveCommand = new DelegateCommand(Save);
             CancelCommand = new DelegateCommand(Cancel);
+        }
+
+        public bool CanCloseDialog() => true;
+
+        public void OnDialogClosed() { }
+
+        public void OnDialogOpened(IDialogParameters parameters)
+        {
+            if (parameters.ContainsKey(ParametersConstants.EXISTING_COLUMNS_DIALOG))
+            {
+                _editableString = parameters.GetValue<IEnumerable<string>>(ParametersConstants.EXISTING_COLUMNS_DIALOG);
+            }
+        }
+
+        protected virtual void RaiseRequestClose(IDialogResult dialogResult)
+        {
+            dialogResult.Parameters.Add(ParametersConstants.COLUMN_NAME_DIALOG, _editedText);
+            RequestClose?.Invoke(dialogResult);
         }
 
         private void Save()
@@ -53,27 +69,9 @@ namespace RevitConduitTable.WPF.ViewModel
             RaiseRequestClose(new DialogResult(ButtonResult.Cancel));
         }
 
-        public event Action<IDialogResult> RequestClose;
-
-        protected virtual void RaiseRequestClose(IDialogResult dialogResult)
-        {
-            dialogResult.Parameters.Add(ParametersConstants.COLUMN_NAME_DIALOG, _editedText);
-            RequestClose?.Invoke(dialogResult);
-        }
-
-        public bool CanCloseDialog() => true;
-
-        public void OnDialogClosed() { }
-
-        public void OnDialogOpened(IDialogParameters parameters)
-        {
-            if (parameters.ContainsKey(ParametersConstants.EXISTING_COLUMNS_DIALOG))
-            {
-                _editableString = parameters.GetValue<IEnumerable<string>>(ParametersConstants.EXISTING_COLUMNS_DIALOG);
-            }
-        }
 
         private readonly IDialogService _dialogService;
-        private bool _isStringSelected;
+        private string _editedText;
+        private IEnumerable<string> _editableString;
     }
 }

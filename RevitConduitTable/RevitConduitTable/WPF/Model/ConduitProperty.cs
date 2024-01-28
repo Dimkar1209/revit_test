@@ -14,6 +14,12 @@ public class ConduitProperty : BindableBase
         set { SetProperty(ref _isReadonly, value); }
     }
 
+    public bool IsVisible
+    {
+        get { return _isVisible; }
+        set { SetProperty(ref _isVisible, value); }
+    }
+
     public object ParameterValue
     {
         get { return _parameterValue; }
@@ -22,6 +28,7 @@ public class ConduitProperty : BindableBase
 
     private string _parameterName;
     private bool _isReadonly;
+    private bool _isVisible;
     private object _parameterValue;
 
 }

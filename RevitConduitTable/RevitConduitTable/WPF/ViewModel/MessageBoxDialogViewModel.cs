@@ -11,9 +11,10 @@ namespace RevitConduitTable.WPF.ViewModel
 {
     internal class MessageBoxDialogViewModel : BindableBase, IDialogAware
     {
-        public string Title => UI_Text.MESSAGE_DIALOG_TITLE;
+        public DelegateCommand OKCommand { get; }
+        public event Action<IDialogResult> RequestClose;
 
-        private string _message;
+        public string Title => UI_Text.MESSAGE_DIALOG_TITLE;
 
         public string Message
         {
@@ -21,19 +22,10 @@ namespace RevitConduitTable.WPF.ViewModel
             set { SetProperty(ref _message, value); }
         }
 
-        public DelegateCommand OKCommand { get; }
-
         public MessageBoxDialogViewModel()
         {
             OKCommand = new DelegateCommand(OK);
         }
-
-        private void OK()
-        {
-            RequestClose(new DialogResult(ButtonResult.OK));
-        }
-
-        public event Action<IDialogResult> RequestClose;
 
         public bool CanCloseDialog() => true;
 
@@ -46,5 +38,12 @@ namespace RevitConduitTable.WPF.ViewModel
                 Message = parameters.GetValue<string>(ParametersConstants.MESSAGE_DIALOG);
             }
         }
+
+        private void OK()
+        {
+            RequestClose(new DialogResult(ButtonResult.OK));
+        }
+
+        private string _message;
     }
 }

@@ -2,17 +2,12 @@
 
 using NLog;
 
-using RevitConduitTable.Helpers;
 using RevitConduitTable.Resources;
 using RevitConduitTable.RevitUIBuilder;
 using RevitConduitTable.RevitUIBuilder.ConduitTableTab;
-using RevitConduitTable.WPF.Services;
 
 using System;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Windows;
-using System.Windows.Media.Imaging;
 
 namespace RevitConduitTable
 {

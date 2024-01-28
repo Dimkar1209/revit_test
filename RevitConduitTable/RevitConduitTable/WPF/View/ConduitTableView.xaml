@@ -37,10 +37,12 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Content="{localize:Localize ADD_BUTTON_TABLE}" Command="{Binding AddCommand}" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,0,5,0"/>
             <Button Grid.Column="1" Content="{localize:Localize EDIT_COLUMNS_BUTTON_TABLE}" Command="{Binding AddColumnCommand}" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,0,5,0"/>
             <Button Grid.Column="2" Content="{localize:Localize REMOVE_BUTTON_TABLE}" Command="{Binding RemoveCommand}" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,0,5,0"/>
+            <Button Grid.Column="3" Content="{Binding HideButtonText}" Command="{Binding ToggleHideCommand}" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,0,5,0"/>
         </Grid>
     </Grid>
 </UserControl>

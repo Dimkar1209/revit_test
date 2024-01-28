@@ -132,6 +132,9 @@
   <data name="EDIT_COLUMN_DIALOG_TITLE" xml:space="preserve">
     <value>Edit Conduit</value>
   </data>
+  <data name="HIDE_FIELDS_BUTTON" xml:space="preserve">
+    <value>Hide Calculated Fields</value>
+  </data>
   <data name="MESSAGE_DIALOG_TITLE" xml:space="preserve">
     <value>Message</value>
   </data>

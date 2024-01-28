@@ -126,6 +126,9 @@
   <data name="EDIT_BUTTON_TABLE" xml:space="preserve">
     <value>Редагувати</value>
   </data>
+  <data name="EDIT_COLUMNS_BUTTON_TABLE" xml:space="preserve">
+    <value>Редагувати колонку</value>
+  </data>
   <data name="PANEL_NAME" xml:space="preserve">
     <value>Панель</value>
   </data>

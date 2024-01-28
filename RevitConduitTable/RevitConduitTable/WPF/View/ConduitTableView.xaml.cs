@@ -2,6 +2,8 @@
 
 using RevitConduitTable.WPF.ViewModel;
 
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -26,24 +28,49 @@ namespace RevitConduitTable.WPF.View
             {
                 dataGrid.Columns.Clear();
 
-                foreach (var header in viewModel.ColumnHeaders)
+                if (viewModel.Conduits != null)
                 {
-                    var binding = new Binding($"[{header}]");
-                    dataGrid.Columns.Add(new DataGridTextColumn { Header = header, Binding = binding });
-                }
 
+                    HashSet<string> uniqueParameterNames = viewModel.Conduits
+                        .SelectMany(conduit => conduit.Properties.Keys)
+                        .Distinct()
+                        .ToHashSet();
+
+                    foreach (string paramName in uniqueParameterNames)
+                    {
+                        bool isReadOnly = viewModel.Conduits.FirstOrDefault()?.Properties[paramName].IsReadonly ?? false;
+
+                        var binding = new System.Windows.Data.Binding($"Properties[{paramName}].ParameterValue")
+                        {
+                            Mode = BindingMode.TwoWay,
+                            UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                        };
+
+                        dataGrid.Columns.Add(new DataGridTextColumn
+                        {
+                            Header = paramName,
+                            Binding = binding,
+                            Width = new DataGridLength(1, DataGridLengthUnitType.Star),
+                            MinWidth = 20,
+                            IsReadOnly= isReadOnly
+                        });
+                    }
+                }
+            }
+        }
+
+        private void ConduitTableView_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is ConduitTableViewModel viewModel)
+            {
                 viewModel.Conduits.CollectionChanged += Conduits_CollectionChanged;
+                UpdateDataGridColumns(this.ConduitTable);
             }
         }
 
         private void Conduits_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            UpdateDataGridColumns(this.ConduitTable);
-        }
-
-        private void ConduitTableView_Loaded(object sender, RoutedEventArgs e)
-        {
-            UpdateDataGridColumns(this.ConduitTable);
+           
         }
     }
 }

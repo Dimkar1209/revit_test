@@ -88,6 +88,15 @@ namespace RevitConduitTable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Columns.
+        /// </summary>
+        public static string EDIT_COLUMNS_BUTTON_TABLE {
+            get {
+                return ResourceManager.GetString("EDIT_COLUMNS_BUTTON_TABLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Panel Conduit.
         /// </summary>
         public static string PANEL_NAME {

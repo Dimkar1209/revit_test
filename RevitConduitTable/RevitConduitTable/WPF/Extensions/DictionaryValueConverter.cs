@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;using System.Windows.Data;
+using System.Globalization;
+using System.Windows.Data;
+using System.Windows.Media;
 
 namespace RevitConduitTable.WPF.Extensions
 {
@@ -8,12 +10,23 @@ namespace RevitConduitTable.WPF.Extensions
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is IDictionary<string, object> dictionary && parameter is string key)
+            // Your existing logic here...
+
+            // Validation logic
+            if (IsValid(value))
             {
-                dictionary.TryGetValue(key, out var result);
-                return result;
+                return Brushes.Green; // Valid value color
             }
-            return null;
+            else
+            {
+                return Brushes.Red; // Invalid value color
+            }
+        }
+
+        private bool IsValid(object value)
+        {
+            // Implement your validation logic here
+            return true;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

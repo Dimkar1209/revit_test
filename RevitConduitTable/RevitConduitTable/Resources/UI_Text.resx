@@ -123,6 +123,9 @@
   <data name="BUTTON_CONDUIT_NAME" xml:space="preserve">
     <value>Button Conduit</value>
   </data>
+  <data name="DEFAULT_RULE_MESSAGE" xml:space="preserve">
+    <value>Enter number between 0 to 100</value>
+  </data>
   <data name="EDIT_BUTTON_TABLE" xml:space="preserve">
     <value>Edit</value>
   </data>

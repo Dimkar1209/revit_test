@@ -123,6 +123,9 @@
   <data name="BUTTON_CONDUIT_NAME" xml:space="preserve">
     <value>Кнопка</value>
   </data>
+  <data name="DEFAULT_RULE_MESSAGE" xml:space="preserve">
+    <value>Введіть число від 0 до 100</value>
+  </data>
   <data name="EDIT_BUTTON_TABLE" xml:space="preserve">
     <value>Редагувати</value>
   </data>

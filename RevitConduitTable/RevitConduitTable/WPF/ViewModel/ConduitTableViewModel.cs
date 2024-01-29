@@ -230,7 +230,7 @@ namespace RevitConduitTable.WPF.ViewModel
             { _calcululatedProperties[2], new ConduitProperty() { ParameterName = _calcululatedProperties[2], ParameterValue = 2, IsReadonly = true, IsVisible = true }},
             { _calcululatedProperties[3], new ConduitProperty() { ParameterName = _calcululatedProperties[3], ParameterValue = 2, IsReadonly = true, IsVisible = true }},
             { _calcululatedProperties[4], new ConduitProperty() { ParameterName = _calcululatedProperties[4], ParameterValue = 2, IsReadonly = true, IsVisible = true }},
-            { _iniProperties[0], new ConduitProperty() { ParameterName = _iniProperties[0], ParameterValue = 2, IsReadonly = false, IsVisible = true }},
+            { _iniProperties[0], new ConduitProperty() { ParameterName = _iniProperties[0], ParameterValue = "text", IsReadonly = false, IsVisible = true }},
             { _iniProperties[1], new ConduitProperty() { ParameterName = _iniProperties[1], ParameterValue = 2, IsReadonly = false, IsVisible = true }},
             { _iniProperties[2], new ConduitProperty() { ParameterName = _iniProperties[2], ParameterValue = 2, IsReadonly = false, IsVisible = true }},
             { _iniProperties[3], new ConduitProperty() { ParameterName = _iniProperties[3], ParameterValue = 2, IsReadonly = false, IsVisible = true }},

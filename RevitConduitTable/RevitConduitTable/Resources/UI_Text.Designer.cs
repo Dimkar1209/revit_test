@@ -79,6 +79,15 @@ namespace RevitConduitTable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter number between 0 to 100.
+        /// </summary>
+        public static string DEFAULT_RULE_MESSAGE {
+            get {
+                return ResourceManager.GetString("DEFAULT_RULE_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string EDIT_BUTTON_TABLE {

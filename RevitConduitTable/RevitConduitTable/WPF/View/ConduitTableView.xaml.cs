@@ -36,10 +36,7 @@ namespace RevitConduitTable.WPF.View
 
         private void ConduitTableView_Loaded(object sender, RoutedEventArgs e)
         {
-            if (DataContext is ConduitTableViewModel viewModel)
-            {
-                UpdateDynamicTable();
-            }
+            UpdateDynamicTable();
         }
 
         private void UpdateDynamicTable()
@@ -65,7 +62,8 @@ namespace RevitConduitTable.WPF.View
                         var binding = new System.Windows.Data.Binding($"Properties[{paramName}].ParameterValue")
                         {
                             Mode = BindingMode.TwoWay,
-                            UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                            UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                            ValidatesOnNotifyDataErrors = true
                         };
 
                         dataGrid.Columns.Add(new DataGridTextColumn
@@ -76,7 +74,6 @@ namespace RevitConduitTable.WPF.View
                             MinWidth = 20,
                             IsReadOnly = isReadOnly,
                             Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed,
-
                         });
                     }
                 }

@@ -135,6 +135,12 @@
   <data name="EDIT_COLUMN_DIALOG_TITLE" xml:space="preserve">
     <value>Edit Conduit</value>
   </data>
+  <data name="EXPORT_EXCEL_ERORR" xml:space="preserve">
+    <value>Exporting table Error</value>
+  </data>
+  <data name="EXPORT_EXCEL_INFO" xml:space="preserve">
+    <value>Exported to {0}</value>
+  </data>
   <data name="HIDE_FIELDS_BUTTON" xml:space="preserve">
     <value>Hide Calculated Fields</value>
   </data>

@@ -6,6 +6,7 @@ using Prism.Services.Dialogs;
 using RevitConduitTable.Constants;
 using RevitConduitTable.Resources;
 using RevitConduitTable.WPF.Events;
+using RevitConduitTable.WPF.ExportData;
 using RevitConduitTable.WPF.Model;
 using RevitConduitTable.WPF.View;
 
@@ -25,6 +26,8 @@ namespace RevitConduitTable.WPF.ViewModel
         public DelegateCommand PasteCommand { get; private set; }
 
         public DelegateCommand ToggleHideCommand { get; private set; }
+
+        public DelegateCommand ExportCommand { get; private set; }
 
         private readonly IEventAggregator _eventAggregator;
 
@@ -60,6 +63,7 @@ namespace RevitConduitTable.WPF.ViewModel
             PasteCommand = new DelegateCommand(ExecutePasteCommand, CanExecutePasteCommand);
             AddColumnCommand = new DelegateCommand(ExecuteAddColumnCommand);
             ToggleHideCommand = new DelegateCommand(ExecuteToggleHideCommand);
+            ExportCommand = new DelegateCommand(ExecuteExportCommand);
 
             _dialogService = dialogService;
             _eventAggregator = eventAggregator;
@@ -119,14 +123,22 @@ namespace RevitConduitTable.WPF.ViewModel
         {
             var parameters = new DialogParameters() { { ParametersConstants.EXISTING_COLUMNS_DIALOG, GetColumns } };
             string columnAdd = string.Empty;
+            bool okResult = false;
 
             _dialogService.ShowDialog(typeof(EditColumsDialog).Name, parameters, result =>
             {
                 if (result.Result == ButtonResult.OK)
                 {
                     columnAdd = result.Parameters.GetValue<string>(ParametersConstants.COLUMN_NAME_DIALOG);
+                    okResult = true;
                 }
+
             });
+
+            if (!okResult || string.IsNullOrEmpty(columnAdd))
+            {
+                return;
+            }
 
             foreach (var item in _conduits)
             {
@@ -194,6 +206,23 @@ namespace RevitConduitTable.WPF.ViewModel
 
         #endregion
 
+        private void ExecuteExportCommand()
+        {
+            if (!ExportToExcel.Export(_conduits.ToList()))
+            {
+                _dialogService.ShowDialog(typeof(MessageBoxDialog).Name,
+                    new DialogParameters() { { ParametersConstants.MESSAGE_DIALOG, UI_Text.EXPORT_EXCEL_ERORR } },
+                    result => { });
+
+                return;
+            }
+
+            var parameters = new DialogParameters()
+            { { ParametersConstants.MESSAGE_DIALOG, string.Format(UI_Text.EXPORT_EXCEL_INFO, ExportToExcel.GetSavedPath()) } };
+
+            _dialogService.ShowDialog(typeof(MessageBoxDialog).Name, parameters, result => { });
+        }
+
         private void ExecuteToggleHideCommand()
         {
             CalculatedFieldsVisibility(_isFiledsHidden);
@@ -203,7 +232,7 @@ namespace RevitConduitTable.WPF.ViewModel
 
         private void CalculatedFieldsVisibility(bool isVisible)
         {
-            Conduits.ToList().ForEach(item => 
+            Conduits.ToList().ForEach(item =>
                 _calcululatedProperties.ForEach(calculatedProperty =>
                     item.SetVisibilityByKey(calculatedProperty, isVisible)));
 
@@ -223,7 +252,7 @@ namespace RevitConduitTable.WPF.ViewModel
         private readonly static List<string> _iniProperties = new List<string>() { "I_1", "I_2", "I_3", "I_4", "I_5" };
 
         private readonly static Dictionary<string, ConduitProperty> defautProperties = new Dictionary<string, ConduitProperty>()
-        {   
+        {
             { ParametersConstants.DATAGRID_ID, new ConduitProperty() { ParameterName = ParametersConstants.DATAGRID_ID, ParameterValue = 1, IsReadonly = true, IsVisible = true }},
             { _calcululatedProperties[0], new ConduitProperty() { ParameterName = _calcululatedProperties[0], ParameterValue = 1, IsReadonly = true, IsVisible = true }},
             { _calcululatedProperties[1], new ConduitProperty() { ParameterName = _calcululatedProperties[1], ParameterValue = 2, IsReadonly = true, IsVisible = true }},

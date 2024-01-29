@@ -138,6 +138,15 @@
   <data name="EDIT_COLUMN_ERROR" xml:space="preserve">
     <value>Column already exists.</value>
   </data>
+  <data name="EXPORT_EXCEL_BUTTON" xml:space="preserve">
+    <value>Export to excel</value>
+  </data>
+  <data name="EXPORT_EXCEL_ERORR" xml:space="preserve">
+    <value>Exporting table Error</value>
+  </data>
+  <data name="EXPORT_EXCEL_INFO" xml:space="preserve">
+    <value>Exported to {0}</value>
+  </data>
   <data name="HIDE_FIELDS_BUTTON" xml:space="preserve">
     <value>Hide Calculated Fields</value>
   </data>

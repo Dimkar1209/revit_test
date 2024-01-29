@@ -4,6 +4,7 @@ using Prism.Services.Dialogs;
 
 using RevitConduitTable.Constants;
 using RevitConduitTable.Resources;
+using RevitConduitTable.WPF.View;
 
 using System;
 using System.Collections.Generic;
@@ -56,7 +57,7 @@ namespace RevitConduitTable.WPF.ViewModel
             if (_editableString != null && _editableString.Contains(_editedText))
             {
                 var parameters = new DialogParameters() { { ParametersConstants.MESSAGE_DIALOG, UI_Text.EDIT_COLUMN_ERROR } };
-                _dialogService.ShowDialog(UI_Text.MESSAGE_DIALOG_TITLE, parameters, result => { });
+                _dialogService.ShowDialog(typeof(MessageBoxDialog).Name, parameters, result => { });
             }
             else
             {

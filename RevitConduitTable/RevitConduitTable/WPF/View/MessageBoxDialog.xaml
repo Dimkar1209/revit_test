@@ -5,12 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RevitConduitTable.WPF.View"
              mc:Ignorable="d" 
+MinHeight="200" 
+             MinWidth="200"
              Height="Auto" Width="Auto">
-    
+
     <Grid Background="White">
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock Text="{Binding Message}" Margin="10" FontSize="16" FontWeight="Bold"/>
-            <Button Content="OK" Command="{Binding OKCommand}" Height="30" Width="80" Margin="10"/>
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="{Binding Message}" FontSize="16" FontWeight="Bold" Height="24" VerticalAlignment="Center" Margin="20,0,20,0"/>
+        <Button Grid.Row="1" Content="OK" Command="{Binding OKCommand}" Height="30" Width="80" />
     </Grid>
 </UserControl>

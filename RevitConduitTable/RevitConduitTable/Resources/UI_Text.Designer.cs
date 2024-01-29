@@ -124,6 +124,33 @@ namespace RevitConduitTable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export to excel.
+        /// </summary>
+        public static string EXPORT_EXCEL_BUTTON {
+            get {
+                return ResourceManager.GetString("EXPORT_EXCEL_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporting table Error.
+        /// </summary>
+        public static string EXPORT_EXCEL_ERORR {
+            get {
+                return ResourceManager.GetString("EXPORT_EXCEL_ERORR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exported to {0}.
+        /// </summary>
+        public static string EXPORT_EXCEL_INFO {
+            get {
+                return ResourceManager.GetString("EXPORT_EXCEL_INFO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hide Calculated Fields.
         /// </summary>
         public static string HIDE_FIELDS_BUTTON {

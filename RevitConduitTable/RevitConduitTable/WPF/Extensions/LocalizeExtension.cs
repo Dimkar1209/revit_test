@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-using Prism.Ioc;
+﻿using Prism.Ioc;
 
 using RevitConduitTable.WPF.Services;
 

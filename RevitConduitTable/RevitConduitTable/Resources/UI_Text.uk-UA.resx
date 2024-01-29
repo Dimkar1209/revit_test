@@ -135,6 +135,12 @@
   <data name="EDIT_COLUMN_DIALOG_TITLE" xml:space="preserve">
     <value>Edit Conduit</value>
   </data>
+  <data name="EXPORT_EXCEL_ERORR" xml:space="preserve">
+    <value>Помилка Експорту Excel</value>
+  </data>
+  <data name="EXPORT_EXCEL_INFO" xml:space="preserve">
+    <value>Експортовано {0}</value>
+  </data>
   <data name="MESSAGE_DIALOG_TITLE" xml:space="preserve">
     <value>Message</value>
   </data>

@@ -97,6 +97,15 @@ namespace RevitConduitTable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exporting table Error.
+        /// </summary>
+        internal static string EXPORT_EXCEL_ERORR {
+            get {
+                return ResourceManager.GetString("EXPORT_EXCEL_ERORR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Resource key {0} not found for culture {1}.
         /// </summary>
         internal static string LOCALIZATION_KEY_WARN {

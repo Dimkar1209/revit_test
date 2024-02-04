@@ -1,4 +1,10 @@
-﻿using Prism.Commands;
+﻿using ClosedXML.Excel;
+
+using Microsoft.Win32;
+
+using NLog;
+
+using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
@@ -10,6 +16,7 @@ using RevitConduitTable.WPF.ExportData;
 using RevitConduitTable.WPF.Model;
 using RevitConduitTable.WPF.View;
 
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -28,6 +35,7 @@ namespace RevitConduitTable.WPF.ViewModel
         public DelegateCommand ToggleHideCommand { get; private set; }
 
         public DelegateCommand ExportCommand { get; private set; }
+        public DelegateCommand ImportCommand { get; private set; }
 
         private readonly IEventAggregator _eventAggregator;
 
@@ -63,11 +71,15 @@ namespace RevitConduitTable.WPF.ViewModel
             PasteCommand = new DelegateCommand(ExecutePasteCommand, CanExecutePasteCommand);
             AddColumnCommand = new DelegateCommand(ExecuteAddColumnCommand);
             ToggleHideCommand = new DelegateCommand(ExecuteToggleHideCommand);
-            ExportCommand = new DelegateCommand(ExecuteExportCommand);
 
+            ExportCommand = new DelegateCommand(ExecuteExportCommand);
+            ImportCommand = new DelegateCommand(ExecuteImportCommand);
             _dialogService = dialogService;
             _eventAggregator = eventAggregator;
             _isFiledsHidden = false;
+
+            InitializeCalculatedProperties();
+            InitializeIniProperties();
         }
 
         #region Add/Remove commands
@@ -140,7 +152,7 @@ namespace RevitConduitTable.WPF.ViewModel
                 return;
             }
 
-            foreach (var item in _conduits)
+            foreach (ConduitItem item in _conduits)
             {
                 item.Properties.Add(columnAdd, new ConduitProperty()
                 { ParameterName = columnAdd, ParameterValue = 1, IsReadonly = false, IsVisible = true });
@@ -206,21 +218,153 @@ namespace RevitConduitTable.WPF.ViewModel
 
         #endregion
 
+        #region Import/Export cmd
+
         private void ExecuteExportCommand()
         {
-            if (!ExportToExcel.Export(_conduits.ToList()))
+            var saveFileDialog = new SaveFileDialog()
+            {
+                Filter = FileConstants.SAVE_DIALOG_EXCEL_FILTER,
+                DefaultExt = FileConstants.EXCEL_FILE_EXTENSION,
+                FileName = FileConstants.EXCEL_FILE_NAME
+            };
+
+            bool? result = saveFileDialog.ShowDialog();
+
+            if (result == true)
+            {
+                if (!ExportToExcel.Export(_conduits.ToList(), saveFileDialog.FileName))
+                {
+                    _dialogService.ShowDialog(typeof(MessageBoxDialog).Name,
+                        new DialogParameters() { { ParametersConstants.MESSAGE_DIALOG, UI_Text.EXPORT_EXCEL_ERORR } },
+                        r => { });
+
+                    return;
+                }
+
+                var parameters = new DialogParameters()
+                { { ParametersConstants.MESSAGE_DIALOG, string.Format(UI_Text.EXPORT_EXCEL_INFO, ExportToExcel.GetSavedPath()) } };
+
+                _dialogService.ShowDialog(typeof(MessageBoxDialog).Name, parameters, r => { });
+            }
+        }
+
+        private void ExecuteImportCommand()
+        {
+            var openFileDialog = new OpenFileDialog
+            {
+                Filter = FileConstants.LOAD_DIALOG_EXCEL_FILTER,
+                Title = UI_Text.EXCEL_FILE_IMPORT_DIALOG_TITLE
+            };
+
+            bool? result = openFileDialog.ShowDialog();
+            if (result == true)
+            {
+                string filePath = openFileDialog.FileName;
+                PopulateFromExcel(filePath);
+            }
+        }
+
+        private void PopulateFromExcel(string filePath)
+        {
+            try
+            {
+                using (var workbook = new XLWorkbook(filePath))
+                {
+                    IXLWorksheet worksheet = workbook.Worksheet(1);
+                    IEnumerable<IXLRangeRow> rows = worksheet.RangeUsed().RowsUsed().Skip(1);
+
+                    _conduits.Clear();
+
+                    foreach (IXLRangeRow row in rows)
+                    {
+                        var conduitItem = new ConduitItem
+                        {
+                            Properties = new Dictionary<string, ConduitProperty>()
+                        };
+
+                        foreach (IXLCell header in worksheet.FirstRowUsed().CellsUsed())
+                        {
+                            string headerText = header.GetString();
+                            IXLCell cell = row.Cell(header.WorksheetColumn().ColumnNumber());
+                            XLCellValue cellValue = cell.Value;
+
+                            if (headerText.Equals(ParametersConstants.DATAGRID_ID))
+                            {
+                                ImportItemID(conduitItem, headerText, cellValue);
+
+                                continue;
+                            }
+
+                            conduitItem.Properties[headerText] = new ConduitProperty
+                            {
+                                ParameterName = headerText,
+                                ParameterValue = GetCellValue(cell),
+                                IsReadonly = _calcululatedProperties.Contains(headerText),
+                                IsVisible = true
+                            };
+                        }
+
+                        _conduits.Add(conduitItem);
+                    }
+
+                    RaisePropertyChanged(nameof(Conduits));
+                    _eventAggregator.GetEvent<UpdateTableEvent>().Publish(null);
+                }
+            }
+            catch (Exception ex)
             {
                 _dialogService.ShowDialog(typeof(MessageBoxDialog).Name,
-                    new DialogParameters() { { ParametersConstants.MESSAGE_DIALOG, UI_Text.EXPORT_EXCEL_ERORR } },
-                    result => { });
+                    new DialogParameters { { ParametersConstants.MESSAGE_DIALOG, UI_Text.IMPORT_EXCEL_ERROR } },
+                    r => { });
 
-                return;
+                logger.Error(UI_Text.IMPORT_EXCEL_ERROR, ex);
             }
+        }
 
-            var parameters = new DialogParameters()
-            { { ParametersConstants.MESSAGE_DIALOG, string.Format(UI_Text.EXPORT_EXCEL_INFO, ExportToExcel.GetSavedPath()) } };
+        private static void ImportItemID(ConduitItem conduitItem, string headerText, XLCellValue cellValue)
+        {
+            if (int.TryParse(cellValue.ToString(), out int cellID))
+            {
+                conduitItem.Properties[headerText] = new ConduitProperty
+                {
+                    ParameterName = headerText,
+                    ParameterValue = cellID,
+                    IsReadonly = _calcululatedProperties.Contains(headerText),
+                    IsVisible = true
+                };
+            }
+        }
 
-            _dialogService.ShowDialog(typeof(MessageBoxDialog).Name, parameters, result => { });
+        private object GetCellValue(IXLCell cell)
+        {
+            if (cell.TryGetValue(out double number))
+            {
+                return number;
+            }
+            else
+            {
+                return cell.GetValue<string>();
+            }
+        }
+
+        #endregion
+
+
+        private static void InitializeCalculatedProperties()
+        {
+            foreach (var propName in _calcululatedProperties)
+            {
+                defautProperties.Add(propName, ConduitPropertyFactory.CreateDefault(propName, 2, true, true));
+            }
+        }
+
+        private static void InitializeIniProperties()
+        {
+            foreach (var propName in _iniProperties)
+            {
+                defautProperties.Add(propName, ConduitPropertyFactory.CreateDefault(propName, 2, false, true));
+            }
         }
 
         private void ExecuteToggleHideCommand()
@@ -253,17 +397,9 @@ namespace RevitConduitTable.WPF.ViewModel
 
         private readonly static Dictionary<string, ConduitProperty> defautProperties = new Dictionary<string, ConduitProperty>()
         {
-            { ParametersConstants.DATAGRID_ID, new ConduitProperty() { ParameterName = ParametersConstants.DATAGRID_ID, ParameterValue = 1, IsReadonly = true, IsVisible = true }},
-            { _calcululatedProperties[0], new ConduitProperty() { ParameterName = _calcululatedProperties[0], ParameterValue = 1, IsReadonly = true, IsVisible = true }},
-            { _calcululatedProperties[1], new ConduitProperty() { ParameterName = _calcululatedProperties[1], ParameterValue = 2, IsReadonly = true, IsVisible = true }},
-            { _calcululatedProperties[2], new ConduitProperty() { ParameterName = _calcululatedProperties[2], ParameterValue = 2, IsReadonly = true, IsVisible = true }},
-            { _calcululatedProperties[3], new ConduitProperty() { ParameterName = _calcululatedProperties[3], ParameterValue = 2, IsReadonly = true, IsVisible = true }},
-            { _calcululatedProperties[4], new ConduitProperty() { ParameterName = _calcululatedProperties[4], ParameterValue = 2, IsReadonly = true, IsVisible = true }},
-            { _iniProperties[0], new ConduitProperty() { ParameterName = _iniProperties[0], ParameterValue = "text", IsReadonly = false, IsVisible = true }},
-            { _iniProperties[1], new ConduitProperty() { ParameterName = _iniProperties[1], ParameterValue = 2, IsReadonly = false, IsVisible = true }},
-            { _iniProperties[2], new ConduitProperty() { ParameterName = _iniProperties[2], ParameterValue = 2, IsReadonly = false, IsVisible = true }},
-            { _iniProperties[3], new ConduitProperty() { ParameterName = _iniProperties[3], ParameterValue = 2, IsReadonly = false, IsVisible = true }},
-            { _iniProperties[4], new ConduitProperty() { ParameterName = _iniProperties[4], ParameterValue = 2, IsReadonly = false, IsVisible = true }},
+            { ParametersConstants.DATAGRID_ID, new ConduitProperty() { ParameterName = ParametersConstants.DATAGRID_ID, ParameterValue = 1, IsReadonly = true, IsVisible = true }}
         };
+
+        private static Logger logger = LogManager.GetCurrentClassLogger();
     }
 }

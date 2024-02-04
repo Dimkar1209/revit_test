@@ -222,8 +222,9 @@
     <Compile Include="WPF\Extensions\LocalizeExtension.cs" />
     <Compile Include="WPF\Model\ConduitItem.cs" />
     <Compile Include="WPF\Model\ConduitProperty.cs" />
+    <Compile Include="WPF\Model\ConduitPropertyFactory.cs" />
     <Compile Include="WPF\Model\Rules\DefaultValuePercentageRule.cs" />
-    <Compile Include="WPF\Model\Rules\IPropeptyRule.cs" />
+    <Compile Include="WPF\Model\Rules\IPropertyValidator.cs" />
     <Compile Include="WPF\Services\ILocalizationService.cs" />
     <Compile Include="WPF\Services\LocalizationService.cs" />
     <Compile Include="WPF\ViewModel\ConduitTableViewModel.cs" />
@@ -239,9 +240,7 @@
       <DependentUpon>MessageBoxDialog.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="WPF\ImportData\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="RevitConduitTable.addin" />

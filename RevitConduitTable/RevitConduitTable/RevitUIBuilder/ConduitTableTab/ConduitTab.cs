@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace RevitConduitTable.RevitUIBuilder.ConduitTableTab
 {
     internal class ConduitTab : ICustomTab
     {
-        public string TabName => Resources.UI_Text.TAB_NAME;
+        public string TabName => "TAB_NAME";
 
         public IReadOnlyCollection<ICustomRibbonPanel> Panels => _panels;
 

@@ -22,7 +22,7 @@ namespace RevitConduitTable.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class UI_Text {
+    public class UI_Text {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace RevitConduitTable.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RevitConduitTable.Resources.UI_Text", typeof(UI_Text).Assembly);
@@ -51,7 +51,7 @@ namespace RevitConduitTable.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,29 +61,146 @@ namespace RevitConduitTable.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ConduitButton.
+        ///   Looks up a localized string similar to Add.
         /// </summary>
-        internal static string BUTTON_CONDUIT_NAME {
+        public static string ADD_BUTTON_TABLE {
+            get {
+                return ResourceManager.GetString("ADD_BUTTON_TABLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Button Conduit.
+        /// </summary>
+        public static string BUTTON_CONDUIT_NAME {
             get {
                 return ResourceManager.GetString("BUTTON_CONDUIT_NAME", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ConduitPanel.
+        ///   Looks up a localized string similar to Enter number between 0 to 100.
         /// </summary>
-        internal static string PANEL_NAME {
+        public static string DEFAULT_RULE_MESSAGE {
+            get {
+                return ResourceManager.GetString("DEFAULT_RULE_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string EDIT_BUTTON_TABLE {
+            get {
+                return ResourceManager.GetString("EDIT_BUTTON_TABLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Conduit.
+        /// </summary>
+        public static string EDIT_COLUMN_DIALOG_TITLE {
+            get {
+                return ResourceManager.GetString("EDIT_COLUMN_DIALOG_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Column already exists..
+        /// </summary>
+        public static string EDIT_COLUMN_ERROR {
+            get {
+                return ResourceManager.GetString("EDIT_COLUMN_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Columns.
+        /// </summary>
+        public static string EDIT_COLUMNS_BUTTON_TABLE {
+            get {
+                return ResourceManager.GetString("EDIT_COLUMNS_BUTTON_TABLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export to excel.
+        /// </summary>
+        public static string EXPORT_EXCEL_BUTTON {
+            get {
+                return ResourceManager.GetString("EXPORT_EXCEL_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporting table Error.
+        /// </summary>
+        public static string EXPORT_EXCEL_ERORR {
+            get {
+                return ResourceManager.GetString("EXPORT_EXCEL_ERORR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exported to {0}.
+        /// </summary>
+        public static string EXPORT_EXCEL_INFO {
+            get {
+                return ResourceManager.GetString("EXPORT_EXCEL_INFO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide Calculated Fields.
+        /// </summary>
+        public static string HIDE_FIELDS_BUTTON {
+            get {
+                return ResourceManager.GetString("HIDE_FIELDS_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message.
+        /// </summary>
+        public static string MESSAGE_DIALOG_TITLE {
+            get {
+                return ResourceManager.GetString("MESSAGE_DIALOG_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Panel Conduit.
+        /// </summary>
+        public static string PANEL_NAME {
             get {
                 return ResourceManager.GetString("PANEL_NAME", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ConduitTab.
+        ///   Looks up a localized string similar to Remove.
         /// </summary>
-        internal static string TAB_NAME {
+        public static string REMOVE_BUTTON_TABLE {
+            get {
+                return ResourceManager.GetString("REMOVE_BUTTON_TABLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tab Name.
+        /// </summary>
+        public static string TAB_NAME {
             get {
                 return ResourceManager.GetString("TAB_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Calculated Fields.
+        /// </summary>
+        public static string UNHIDE_FIELDS_BUTTON {
+            get {
+                return ResourceManager.GetString("UNHIDE_FIELDS_BUTTON", resourceCulture);
             }
         }
     }

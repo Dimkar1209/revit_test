@@ -130,16 +130,10 @@
     <value>Edit</value>
   </data>
   <data name="EDIT_COLUMNS_BUTTON_TABLE" xml:space="preserve">
-    <value>Edit Columns</value>
+    <value>Edit Column</value>
   </data>
   <data name="EDIT_COLUMN_DIALOG_TITLE" xml:space="preserve">
     <value>Edit Conduit</value>
-  </data>
-  <data name="EDIT_COLUMN_ERROR" xml:space="preserve">
-    <value>Column already exists.</value>
-  </data>
-  <data name="EXPORT_EXCEL_BUTTON" xml:space="preserve">
-    <value>Export to excel</value>
   </data>
   <data name="EXPORT_EXCEL_ERORR" xml:space="preserve">
     <value>Exporting table Error</value>
@@ -161,8 +155,5 @@
   </data>
   <data name="TAB_NAME" xml:space="preserve">
     <value>Tab Name</value>
-  </data>
-  <data name="UNHIDE_FIELDS_BUTTON" xml:space="preserve">
-    <value>Show Calculated Fields</value>
   </data>
 </root>

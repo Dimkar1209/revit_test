@@ -118,51 +118,39 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ADD_BUTTON_TABLE" xml:space="preserve">
-    <value>Add</value>
+    <value>Додати</value>
   </data>
   <data name="BUTTON_CONDUIT_NAME" xml:space="preserve">
-    <value>Button Conduit</value>
+    <value>Кнопка</value>
   </data>
   <data name="DEFAULT_RULE_MESSAGE" xml:space="preserve">
-    <value>Enter number between 0 to 100</value>
+    <value>Введіть число від 0 до 100</value>
   </data>
   <data name="EDIT_BUTTON_TABLE" xml:space="preserve">
-    <value>Edit</value>
+    <value>Редагувати</value>
   </data>
   <data name="EDIT_COLUMNS_BUTTON_TABLE" xml:space="preserve">
-    <value>Edit Columns</value>
+    <value>Редагувати колонку</value>
   </data>
   <data name="EDIT_COLUMN_DIALOG_TITLE" xml:space="preserve">
     <value>Edit Conduit</value>
   </data>
-  <data name="EDIT_COLUMN_ERROR" xml:space="preserve">
-    <value>Column already exists.</value>
-  </data>
-  <data name="EXPORT_EXCEL_BUTTON" xml:space="preserve">
-    <value>Export to excel</value>
-  </data>
   <data name="EXPORT_EXCEL_ERORR" xml:space="preserve">
-    <value>Exporting table Error</value>
+    <value>Помилка Експорту Excel</value>
   </data>
   <data name="EXPORT_EXCEL_INFO" xml:space="preserve">
-    <value>Exported to {0}</value>
-  </data>
-  <data name="HIDE_FIELDS_BUTTON" xml:space="preserve">
-    <value>Hide Calculated Fields</value>
+    <value>Експортовано {0}</value>
   </data>
   <data name="MESSAGE_DIALOG_TITLE" xml:space="preserve">
     <value>Message</value>
   </data>
   <data name="PANEL_NAME" xml:space="preserve">
-    <value>Panel Conduit</value>
+    <value>Панель</value>
   </data>
   <data name="REMOVE_BUTTON_TABLE" xml:space="preserve">
-    <value>Remove</value>
+    <value>Видалити</value>
   </data>
   <data name="TAB_NAME" xml:space="preserve">
-    <value>Tab Name</value>
-  </data>
-  <data name="UNHIDE_FIELDS_BUTTON" xml:space="preserve">
-    <value>Show Calculated Fields</value>
+    <value>Таб</value>
   </data>
 </root>

@@ -124,6 +124,15 @@ namespace RevitConduitTable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select an Excel File.
+        /// </summary>
+        public static string EXCEL_FILE_IMPORT_DIALOG_TITLE {
+            get {
+                return ResourceManager.GetString("EXCEL_FILE_IMPORT_DIALOG_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export to excel.
         /// </summary>
         public static string EXPORT_EXCEL_BUTTON {
@@ -156,6 +165,24 @@ namespace RevitConduitTable.Resources {
         public static string HIDE_FIELDS_BUTTON {
             get {
                 return ResourceManager.GetString("HIDE_FIELDS_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import excel.
+        /// </summary>
+        public static string IMPORT_EXCEL_BUTTON {
+            get {
+                return ResourceManager.GetString("IMPORT_EXCEL_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to import data from Excel: {0}.
+        /// </summary>
+        public static string IMPORT_EXCEL_ERROR {
+            get {
+                return ResourceManager.GetString("IMPORT_EXCEL_ERROR", resourceCulture);
             }
         }
         

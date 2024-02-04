@@ -240,9 +240,7 @@
       <DependentUpon>MessageBoxDialog.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="WPF\ImportData\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="RevitConduitTable.addin" />

@@ -135,11 +135,17 @@
   <data name="EDIT_COLUMN_DIALOG_TITLE" xml:space="preserve">
     <value>Edit Conduit</value>
   </data>
+  <data name="EXCEL_FILE_IMPORT_DIALOG_TITLE" xml:space="preserve">
+    <value>Оберіть Ексель файл</value>
+  </data>
   <data name="EXPORT_EXCEL_ERORR" xml:space="preserve">
     <value>Помилка Експорту Excel</value>
   </data>
   <data name="EXPORT_EXCEL_INFO" xml:space="preserve">
     <value>Експортовано {0}</value>
+  </data>
+  <data name="IMPORT_EXCEL_BUTTON" xml:space="preserve">
+    <value>Іморт з ексель</value>
   </data>
   <data name="MESSAGE_DIALOG_TITLE" xml:space="preserve">
     <value>Message</value>

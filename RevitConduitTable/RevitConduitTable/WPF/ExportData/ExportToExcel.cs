@@ -15,7 +15,7 @@ namespace RevitConduitTable.WPF.ExportData
 {
     internal class ExportToExcel
     {
-        public static bool Export(IReadOnlyCollection<ConduitItem> conduits)
+        public static bool Export(IReadOnlyCollection<ConduitItem> conduits, string filename)
         {
             try
             {
@@ -33,7 +33,7 @@ namespace RevitConduitTable.WPF.ExportData
                         WriteTable(conduits, worksheet, headers);
                     }
 
-                    workbook.SaveAs(GetSavedPath());
+                    workbook.SaveAs(filename ?? GetSavedPath());
                 }
             }
             catch (Exception ex)
@@ -79,7 +79,7 @@ namespace RevitConduitTable.WPF.ExportData
         public static string GetSavedPath()
         {
             string directory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            return System.IO.Path.Combine(directory, FileConstants.EXCEL_FILE_NAME);
+            return System.IO.Path.Combine(directory, FileConstants.EXCEL_FILE_NAME + FileConstants.EXCEL_FILE_EXTENSION);
         }
 
         private static Logger logger = LogManager.GetCurrentClassLogger();

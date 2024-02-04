@@ -135,6 +135,9 @@
   <data name="EDIT_COLUMN_DIALOG_TITLE" xml:space="preserve">
     <value>Edit Conduit</value>
   </data>
+  <data name="EXCEL_FILE_IMPORT_DIALOG_TITLE" xml:space="preserve">
+    <value>Оберіть Ексель файл</value>
+  </data>
   <data name="EXPORT_EXCEL_ERORR" xml:space="preserve">
     <value>Exporting table Error</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="HIDE_FIELDS_BUTTON" xml:space="preserve">
     <value>Hide Calculated Fields</value>
+  </data>
+  <data name="IMPORT_EXCEL_BUTTON" xml:space="preserve">
+    <value>Import excel</value>
   </data>
   <data name="MESSAGE_DIALOG_TITLE" xml:space="preserve">
     <value>Message</value>

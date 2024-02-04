@@ -36,11 +36,13 @@
         </Grid>
 
         <!-- Grid Upper Right -->
-        <Grid Margin="10,10,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" >
+        <Grid Margin="10,10,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" >
             <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Content="{extensions:Localize EXPORT_EXCEL_BUTTON}" Command="{Binding ExportCommand}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,0,5,0"/>
+            <Button Grid.Column="1" Content="{extensions:Localize IMPORT_EXCEL_BUTTON}" Command="{Binding ImportCommand}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,0,5,0"/>
         </Grid>
 
         <!-- Grid Table buttons -->

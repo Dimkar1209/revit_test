@@ -4,13 +4,21 @@ using RevitConduitTable.WPF.Model;
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
-internal class DefaultValuePercentageRule : IPropeptyRule
+internal class DefaultValuePercentageRule : IPropertyValidator
 {
-    public Type ParameterType => typeof(double);
-    public double UpperLimit => ParametersConstants.PERCENTAGE_RULE_UPPER_LIMIT;
-    public double LowerLimit => ParametersConstants.PERCENTAGE_RULE_LOWER_LIMIT;
-    public string RuleMessage => UI_Text.DEFAULT_RULE_MESSAGE;
-    public IEnumerable<string> AcceptedText => Enumerable.Empty<string>();
+    public IEnumerable<string> Validate(object value)
+    {
+        var errors = new List<string>();
+
+        if (double.TryParse(value.ToString(), out double paramValue))
+        {
+            if (paramValue > ParametersConstants.PERCENTAGE_RULE_UPPER_LIMIT || paramValue <ParametersConstants.PERCENTAGE_RULE_LOWER_LIMIT)
+            {
+                errors.Add(UI_Text.DEFAULT_RULE_MESSAGE);
+            }
+        }
+
+        return errors;
+    }
 }

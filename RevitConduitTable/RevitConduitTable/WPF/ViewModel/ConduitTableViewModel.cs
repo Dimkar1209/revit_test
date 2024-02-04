@@ -68,6 +68,9 @@ namespace RevitConduitTable.WPF.ViewModel
             _dialogService = dialogService;
             _eventAggregator = eventAggregator;
             _isFiledsHidden = false;
+
+            InitializeCalculatedProperties();
+            InitializeIniProperties();
         }
 
         #region Add/Remove commands
@@ -251,19 +254,25 @@ namespace RevitConduitTable.WPF.ViewModel
         private readonly static List<string> _calcululatedProperties = new List<string>() { "C0", "C1", "C2", "C3", "C4" };
         private readonly static List<string> _iniProperties = new List<string>() { "I_1", "I_2", "I_3", "I_4", "I_5" };
 
+        private static void InitializeCalculatedProperties()
+        {
+            foreach (var propName in _calcululatedProperties)
+            {
+                defautProperties.Add(propName, ConduitPropertyFactory.CreateDefault(propName, 2, true, true));
+            }
+        }
+
+        private static void InitializeIniProperties()
+        {
+            foreach (var propName in _iniProperties)
+            {
+                defautProperties.Add(propName, ConduitPropertyFactory.CreateDefault(propName, 2, false, true));
+            }
+        }
+
         private readonly static Dictionary<string, ConduitProperty> defautProperties = new Dictionary<string, ConduitProperty>()
         {
-            { ParametersConstants.DATAGRID_ID, new ConduitProperty() { ParameterName = ParametersConstants.DATAGRID_ID, ParameterValue = 1, IsReadonly = true, IsVisible = true }},
-            { _calcululatedProperties[0], new ConduitProperty() { ParameterName = _calcululatedProperties[0], ParameterValue = 1, IsReadonly = true, IsVisible = true }},
-            { _calcululatedProperties[1], new ConduitProperty() { ParameterName = _calcululatedProperties[1], ParameterValue = 2, IsReadonly = true, IsVisible = true }},
-            { _calcululatedProperties[2], new ConduitProperty() { ParameterName = _calcululatedProperties[2], ParameterValue = 2, IsReadonly = true, IsVisible = true }},
-            { _calcululatedProperties[3], new ConduitProperty() { ParameterName = _calcululatedProperties[3], ParameterValue = 2, IsReadonly = true, IsVisible = true }},
-            { _calcululatedProperties[4], new ConduitProperty() { ParameterName = _calcululatedProperties[4], ParameterValue = 2, IsReadonly = true, IsVisible = true }},
-            { _iniProperties[0], new ConduitProperty() { ParameterName = _iniProperties[0], ParameterValue = "text", IsReadonly = false, IsVisible = true }},
-            { _iniProperties[1], new ConduitProperty() { ParameterName = _iniProperties[1], ParameterValue = 2, IsReadonly = false, IsVisible = true }},
-            { _iniProperties[2], new ConduitProperty() { ParameterName = _iniProperties[2], ParameterValue = 2, IsReadonly = false, IsVisible = true }},
-            { _iniProperties[3], new ConduitProperty() { ParameterName = _iniProperties[3], ParameterValue = 2, IsReadonly = false, IsVisible = true }},
-            { _iniProperties[4], new ConduitProperty() { ParameterName = _iniProperties[4], ParameterValue = 2, IsReadonly = false, IsVisible = true }},
+            { ParametersConstants.DATAGRID_ID, new ConduitProperty() { ParameterName = ParametersConstants.DATAGRID_ID, ParameterValue = 1, IsReadonly = true, IsVisible = true }}
         };
     }
 }

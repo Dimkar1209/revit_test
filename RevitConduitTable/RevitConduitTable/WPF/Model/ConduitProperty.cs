@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 
 internal class ConduitProperty : BindableBase, INotifyDataErrorInfo
 {
@@ -38,7 +39,7 @@ internal class ConduitProperty : BindableBase, INotifyDataErrorInfo
         set => SetProperty(ref _parameterValue, value, () => ValidatePropertyValue(value));
     }
 
-    public IPropeptyRule PropeptyRule
+    public IPropertyValidator PropeptyRule
     {
         get { return _propeptyRule; }
         set { SetProperty(ref _propeptyRule, value); }
@@ -62,25 +63,21 @@ internal class ConduitProperty : BindableBase, INotifyDataErrorInfo
 
     private void ValidatePropertyValue(object value)
     {
-        _errors.Remove(nameof(ParameterValue));
+        _errors.Clear();
+        IEnumerable<string> errors = _propeptyRule.Validate(value);
 
-        if (double.TryParse(value.ToString(), out double paramValue))
+        if (errors.Any())
         {
-            if (paramValue > PropeptyRule.UpperLimit
-                || paramValue < PropeptyRule.LowerLimit)
-            {
-                _errors[nameof(ParameterValue)] = new List<string> { PropeptyRule.RuleMessage };
-                RaiseErrorsChanged(nameof(ParameterValue));
-            }
+            _errors[nameof(ParameterValue)] = new List<string>(errors);
+            RaiseErrorsChanged(nameof(ParameterValue));
         }
-
     }
 
     private string _parameterName;
     private bool _isReadonly;
     private bool _isVisible;
     private object _parameterValue;
-    private IPropeptyRule _propeptyRule;
+    private IPropertyValidator _propeptyRule;
     private Dictionary<string, List<string>> _errors = new Dictionary<string, List<string>>();
 
 }

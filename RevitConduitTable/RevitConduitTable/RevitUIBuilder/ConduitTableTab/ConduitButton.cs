@@ -7,6 +7,7 @@ using Prism.Ioc;
 using Prism.Regions;
 
 using RevitConduitTable.Constants;
+using RevitConduitTable.Helpers;
 using RevitConduitTable.Resources;
 using RevitConduitTable.WPF;
 using RevitConduitTable.WPF.View;
@@ -34,6 +35,7 @@ namespace RevitConduitTable.RevitUIBuilder
         {
             try
             {
+                RevitDocumentHelper.UiApplication = commandData.Application;
                 logger.Info(Logs_Text.BUTTON_CONDUIT_INFO);
                 var bootstrapper = new Bootstrapper();
                 bootstrapper.Run();

@@ -227,6 +227,9 @@
     <Compile Include="WPF\Model\ConduitPropertyFactory.cs" />
     <Compile Include="WPF\Model\Rules\DefaultValuePercentageRule.cs" />
     <Compile Include="WPF\Model\Rules\IPropertyValidator.cs" />
+    <Compile Include="WPF\Model\SharedParametersModel.cs" />
+    <Compile Include="WPF\Services\CollectionService.cs" />
+    <Compile Include="WPF\Services\ICollectionService.cs" />
     <Compile Include="WPF\Services\ILocalizationService.cs" />
     <Compile Include="WPF\Services\LocalizationService.cs" />
     <Compile Include="WPF\ViewModel\ConduitTableViewModel.cs" />

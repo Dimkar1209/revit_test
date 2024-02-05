@@ -22,16 +22,12 @@ namespace RevitConduitTable.WPF
                 {
                     instance = new Bootstrapper();
                 }
+
                 return instance;
             }
         }
 
-        protected override DependencyObject CreateShell()
-        {
-            return new BootstrapperWindow();
-        }
-
-        public static void RunSingleWindow()
+        public void RunSingleWindow()
         {
             if (isRunning)
             {
@@ -42,10 +38,24 @@ namespace RevitConduitTable.WPF
             Instance.Run();
         }
 
+        protected override DependencyObject CreateShell()
+        {
+            var shell = new BootstrapperWindow();
+            shell.Closed += Shell_Closed; ; 
+            return shell;
+        }
+
+        private void Shell_Closed(object sender, System.EventArgs e)
+        {
+            isRunning = false;
+        }
+
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            
             containerRegistry.RegisterSingleton<BootstrapperWindow>();
             containerRegistry.RegisterSingleton<ILocalizationService, LocalizationService>();
+            containerRegistry.RegisterSingleton<ICollectionService, CollectionService>();
 
             containerRegistry.Register<ConduitTableViewModel>();
             containerRegistry.Register<SharedParametersViewModel>();

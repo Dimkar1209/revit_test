@@ -1,4 +1,10 @@
-﻿using System;
+﻿using Prism.Events;
+using Prism.Ioc;
+
+using RevitConduitTable.WPF.Events;
+using RevitConduitTable.WPF.ViewModel;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +26,10 @@ namespace RevitConduitTable.WPF.View
     /// </summary>
     public partial class SharedParametersView : UserControl
     {
-        public SharedParametersView()
+        public SharedParametersView(IContainerProvider containerProvider)
         {
             InitializeComponent();
+            DataContext = containerProvider.Resolve<SharedParametersViewModel>();
         }
     }
 }

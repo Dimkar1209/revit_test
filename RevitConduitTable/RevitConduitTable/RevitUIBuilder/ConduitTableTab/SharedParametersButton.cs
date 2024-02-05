@@ -38,7 +38,7 @@ namespace RevitConduitTable.RevitUIBuilder
                 RevitDocumentHelper.UiApplication = commandData.Application;
                 logger.Info(Logs_Text.BUTTON_CONDUIT_INFO);
 
-                Bootstrapper.RunSingleWindow();
+                Bootstrapper.Instance.RunSingleWindow();
 
                 var _regionManager = Bootstrapper.Instance.Container.Resolve<IRegionManager>();
                 _regionManager.RequestNavigate(RegionConstants.MAIN_REGION_NAME, typeof(SharedParametersView).Name);

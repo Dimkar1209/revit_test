@@ -160,7 +160,7 @@ namespace RevitConduitTable.WPF.ViewModel
 
             RaisePropertyChanged(nameof(Conduits));
 
-            _eventAggregator.GetEvent<UpdateTableEvent>().Publish(null);
+            _eventAggregator.GetEvent<UpdateTableEvent>().Publish(Conduits);
             _copiedConduit = null;
         }
 
@@ -309,7 +309,7 @@ namespace RevitConduitTable.WPF.ViewModel
                     }
 
                     RaisePropertyChanged(nameof(Conduits));
-                    _eventAggregator.GetEvent<UpdateTableEvent>().Publish(null);
+                    _eventAggregator.GetEvent<UpdateTableEvent>().Publish(Conduits);
                 }
             }
             catch (Exception ex)
@@ -350,7 +350,6 @@ namespace RevitConduitTable.WPF.ViewModel
 
         #endregion
 
-
         private static void InitializeCalculatedProperties()
         {
             foreach (var propName in _calcululatedProperties)
@@ -380,7 +379,7 @@ namespace RevitConduitTable.WPF.ViewModel
                 _calcululatedProperties.ForEach(calculatedProperty =>
                     item.SetVisibilityByKey(calculatedProperty, isVisible)));
 
-            _eventAggregator.GetEvent<UpdateTableEvent>().Publish(null);
+            _eventAggregator.GetEvent<UpdateTableEvent>().Publish(Conduits);
         }
 
         private ObservableCollection<ConduitItem> _conduits;

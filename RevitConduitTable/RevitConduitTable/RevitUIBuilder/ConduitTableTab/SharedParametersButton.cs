@@ -17,13 +17,13 @@ using System;
 namespace RevitConduitTable.RevitUIBuilder
 {
     [Autodesk.Revit.Attributes.Transaction(Autodesk.Revit.Attributes.TransactionMode.Manual)]
-    internal class ConduitButton : ICustomButton
+    internal class SharedParametersButton : ICustomButton
     {
         public string Name => this.GetType().Name;
 
         public string ClassName => this.GetType().FullName;
 
-        public string ButtonText => "BUTTON_CONDUIT_NAME";
+        public string ButtonText => "SHARED_PARAMETERS_BUTTON";
 
         public string ImagePath => string.Empty;
 
@@ -41,7 +41,7 @@ namespace RevitConduitTable.RevitUIBuilder
                 Bootstrapper.RunSingleWindow();
 
                 var _regionManager = Bootstrapper.Instance.Container.Resolve<IRegionManager>();
-                _regionManager.RequestNavigate(RegionConstants.MAIN_REGION_NAME, typeof(ConduitTableView).Name);
+                _regionManager.RequestNavigate(RegionConstants.MAIN_REGION_NAME, typeof(SharedParametersView).Name);
                 return Result.Succeeded;
             }
             catch (Exception ex)

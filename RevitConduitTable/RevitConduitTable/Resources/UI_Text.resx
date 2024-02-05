@@ -168,6 +168,9 @@
   <data name="REMOVE_BUTTON_TABLE" xml:space="preserve">
     <value>Remove</value>
   </data>
+  <data name="SHARED_PARAMETERS_BUTTON" xml:space="preserve">
+    <value>Shared parameters</value>
+  </data>
   <data name="TAB_NAME" xml:space="preserve">
     <value>Tab Name</value>
   </data>

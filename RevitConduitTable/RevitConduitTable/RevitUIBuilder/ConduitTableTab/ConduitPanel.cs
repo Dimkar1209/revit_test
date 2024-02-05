@@ -9,6 +9,6 @@ namespace RevitConduitTable.RevitUIBuilder.ConduitTableTab
 
         public IReadOnlyCollection<ICustomButton> Buttons => _buttons;
 
-        private List<ICustomButton> _buttons = new List<ICustomButton>() { new ConduitButton() };
+        private List<ICustomButton> _buttons = new List<ICustomButton>() { new ConduitButton(), new SharedParametersButton() };
     }
 }

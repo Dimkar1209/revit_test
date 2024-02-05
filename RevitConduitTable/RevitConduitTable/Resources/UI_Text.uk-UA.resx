@@ -156,6 +156,9 @@
   <data name="REMOVE_BUTTON_TABLE" xml:space="preserve">
     <value>Видалити</value>
   </data>
+  <data name="SHARED_PARAMETERS_BUTTON" xml:space="preserve">
+    <value>Спільні параметри</value>
+  </data>
   <data name="TAB_NAME" xml:space="preserve">
     <value>Таб</value>
   </data>

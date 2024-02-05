@@ -194,6 +194,7 @@
     <Compile Include="Constants\ParametersConstants.cs" />
     <Compile Include="Constants\RegionConstants.cs" />
     <Compile Include="Helpers\NlogSchemaInitialize.cs" />
+    <Compile Include="Helpers\RevitDocumentHelper.cs" />
     <Compile Include="Resources\Logs_Text.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -209,6 +210,7 @@
     <Compile Include="RevitUIBuilder\ConduitTableTab\ConduitPanel.cs" />
     <Compile Include="RevitUIBuilder\ConduitTableTab\ConduitTab.cs" />
     <Compile Include="RevitUIBuilder\ConduitTableTab\ConduitButton.cs" />
+    <Compile Include="RevitUIBuilder\ConduitTableTab\SharedParametersButton.cs" />
     <Compile Include="RevitUIBuilder\ICustomButton.cs" />
     <Compile Include="RevitUIBuilder\ICustomRibbonPanel.cs" />
     <Compile Include="RevitUIBuilder\ICustomTab.cs" />
@@ -230,6 +232,7 @@
     <Compile Include="WPF\ViewModel\ConduitTableViewModel.cs" />
     <Compile Include="WPF\ViewModel\EditColumnsDialogViewModel.cs" />
     <Compile Include="WPF\ViewModel\MessageBoxDialogViewModel.cs" />
+    <Compile Include="WPF\ViewModel\SharedParametersViewModel.cs" />
     <Compile Include="WPF\View\ConduitTableView.xaml.cs">
       <DependentUpon>ConduitTableView.xaml</DependentUpon>
     </Compile>
@@ -238,6 +241,9 @@
     </Compile>
     <Compile Include="WPF\View\MessageBoxDialog.xaml.cs">
       <DependentUpon>MessageBoxDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\View\SharedParametersView.xaml.cs">
+      <DependentUpon>SharedParametersView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />
@@ -271,6 +277,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WPF\View\MessageBoxDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\View\SharedParametersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

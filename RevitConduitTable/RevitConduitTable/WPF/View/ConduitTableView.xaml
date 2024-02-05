@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="RevitConduitTable.WPF.View.ConduitTableView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:extensions="clr-namespace:RevitConduitTable.WPF.Extensions"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             MinHeight="450"
+             MinWidth="800">
+
+    <UserControl.Resources>
+        <Style TargetType="DataGridCell">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="BorderBrush" Value="Red"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+
+    <Grid Background="White" Margin="0,0,0,0">
+
+        <Grid Margin="10,100,10,10">
+            <DataGrid x:Name="ConduitTable" ItemsSource="{Binding Conduits}" SelectedItem="{Binding SelectedConduit, Mode=TwoWay}" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Copy" Command="{Binding CopyCommand}" />
+                        <MenuItem Header="Paste" Command="{Binding PasteCommand}" />
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+            </DataGrid>
+        </Grid>
+
+        <!-- Grid Upper Right -->
+        <Grid Margin="10,10,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" >
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="{extensions:Localize EXPORT_EXCEL_BUTTON}" Command="{Binding ExportCommand}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,0,5,0"/>
+            <Button Grid.Column="1" Content="{extensions:Localize IMPORT_EXCEL_BUTTON}" Command="{Binding ImportCommand}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,0,5,0"/>
+        </Grid>
+
+        <!-- Grid Table buttons -->
+        <Grid Margin="0,70,20,0" Width="400" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="{extensions:Localize ADD_BUTTON_TABLE}" Command="{Binding AddCommand}" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,0,5,0"/>
+            <Button Grid.Column="1" Content="{extensions:Localize EDIT_COLUMNS_BUTTON_TABLE}" Command="{Binding AddColumnCommand}" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,0,5,0"/>
+            <Button Grid.Column="2" Content="{extensions:Localize REMOVE_BUTTON_TABLE}" Command="{Binding RemoveCommand}" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,0,5,0"/>
+            <Button Grid.Column="3" Content="{Binding HideButtonText}" Command="{Binding ToggleHideCommand}" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,0,5,0"/>
+        </Grid>
+    </Grid>
+</UserControl>

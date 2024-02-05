@@ -214,6 +214,15 @@ namespace RevitConduitTable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shared parameters.
+        /// </summary>
+        public static string SHARED_PARAMETERS_BUTTON {
+            get {
+                return ResourceManager.GetString("SHARED_PARAMETERS_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tab Name.
         /// </summary>
         public static string TAB_NAME {

@@ -14,6 +14,7 @@ using RevitConduitTable.Resources;
 using RevitConduitTable.WPF.Events;
 using RevitConduitTable.WPF.ExportData;
 using RevitConduitTable.WPF.Model;
+using RevitConduitTable.WPF.Services;
 using RevitConduitTable.WPF.View;
 
 using System;
@@ -37,8 +38,6 @@ namespace RevitConduitTable.WPF.ViewModel
         public DelegateCommand ExportCommand { get; private set; }
         public DelegateCommand ImportCommand { get; private set; }
 
-        private readonly IEventAggregator _eventAggregator;
-
         public ObservableCollection<ConduitItem> Conduits
         {
             get { return _conduits; }
@@ -57,9 +56,11 @@ namespace RevitConduitTable.WPF.ViewModel
             set { SetProperty(ref _hideButtonText, value); }
         }
 
-        public ConduitTableViewModel(IDialogService dialogService, IEventAggregator eventAggregator)
+        public ConduitTableViewModel(IDialogService dialogService, IEventAggregator eventAggregator, ICollectionService collectionService)
         {
             _conduits = new ObservableCollection<ConduitItem> { new ConduitItem() { Properties = defautProperties } };
+            _collectionService = collectionService;
+            _collectionService.ConduitsShare = _conduits;
 
             AddCommand = new DelegateCommand(ExecuteAddCommand);
             RemoveCommand = new DelegateCommand(ExecuteRemoveCommand, CanExecuteRemoveCommand)
@@ -160,7 +161,7 @@ namespace RevitConduitTable.WPF.ViewModel
 
             RaisePropertyChanged(nameof(Conduits));
 
-            _eventAggregator.GetEvent<UpdateTableEvent>().Publish(null);
+            _eventAggregator.GetEvent<UpdateTableEvent>().Publish(Conduits);
             _copiedConduit = null;
         }
 
@@ -309,7 +310,7 @@ namespace RevitConduitTable.WPF.ViewModel
                     }
 
                     RaisePropertyChanged(nameof(Conduits));
-                    _eventAggregator.GetEvent<UpdateTableEvent>().Publish(null);
+                    _eventAggregator.GetEvent<UpdateTableEvent>().Publish(Conduits);
                 }
             }
             catch (Exception ex)
@@ -350,11 +351,15 @@ namespace RevitConduitTable.WPF.ViewModel
 
         #endregion
 
-
         private static void InitializeCalculatedProperties()
         {
             foreach (var propName in _calcululatedProperties)
             {
+                if (defautProperties.ContainsKey(propName))
+                {
+                    continue;
+                }
+
                 defautProperties.Add(propName, ConduitPropertyFactory.CreateDefault(propName, 2, true, true));
             }
         }
@@ -363,6 +368,11 @@ namespace RevitConduitTable.WPF.ViewModel
         {
             foreach (var propName in _iniProperties)
             {
+                if (defautProperties.ContainsKey(propName))
+                {
+                    continue;
+                }
+
                 defautProperties.Add(propName, ConduitPropertyFactory.CreateDefault(propName, 2, false, true));
             }
         }
@@ -380,7 +390,7 @@ namespace RevitConduitTable.WPF.ViewModel
                 _calcululatedProperties.ForEach(calculatedProperty =>
                     item.SetVisibilityByKey(calculatedProperty, isVisible)));
 
-            _eventAggregator.GetEvent<UpdateTableEvent>().Publish(null);
+            _eventAggregator.GetEvent<UpdateTableEvent>().Publish(Conduits);
         }
 
         private ObservableCollection<ConduitItem> _conduits;
@@ -388,6 +398,9 @@ namespace RevitConduitTable.WPF.ViewModel
         private ConduitItem _copiedConduit;
 
         private IDialogService _dialogService;
+        private readonly IEventAggregator _eventAggregator;
+        private ICollectionService _collectionService;
+
         private IEnumerable<string> GetColumns => _conduits.FirstOrDefault()?.Properties.Keys ?? Enumerable.Empty<string>();
         private string _hideButtonText = UI_Text.HIDE_FIELDS_BUTTON;
         private bool _isFiledsHidden;
